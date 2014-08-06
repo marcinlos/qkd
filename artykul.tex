@@ -36,6 +36,39 @@
 
 \end{opening}
 
+\section{Problem dystrybucji klucza}
+
+Problem dystrybucji klucza w kryptografii to protokół umożliwiający dwóm komunikującym się bytom
+uzgodnienie wspólnego tajnego klucza, nie znanego przez nikogo z zewnątrz. Od początku historii
+kryptografii dystrybucja klucza stanowiła jeden z najbardziej kłopotliwych praktycznych jej aspektów.
+Niezależnie od siły szyfru, bezpieczeństwo klucza jest niezbędne do bezpieczeństwa komunikacji i danych
+przez niego chronionych. Przed wynalezieniem kryptografii asymetrycznej do bezpiecznej komunikacji 
+potrzebny był obydwu stronom tajny, uzgodniony wcześniej klucz, który musiał w jakiś sposób fizycznie 
+zostać przekazany przed rozpoczęciem komunikacji. W czasie drugiej wojny światowej japońska marynarka
+przykładowo używała tzw. książek kodowych. Rozwiązanie to miało poważne wady -- ryzyko przechwycenia
+ich przez nieprzyjaciela było dość duże, a co za tym idzie, kody musiały być często zmieniane, co 
+wymagało ponownego ich drukowania i rozprowadzenia. Szczególnie w trudnych warunkach wojennych,
+bezpieczna dystrybucja klucza, od której niejednokrotnie zależało powodzenie operacji militarnych,
+a więc życie żołnieży, była zadaniem niełatwym. 
+
+Dzisiaj, jakkolwiek dysponujemy kryptografią asymetryczną, szyfry symetryczne wciąż są szeroko 
+stosowane, m. in. ze względu na znacznie większą wydajność \cite{IntelAES, IntelSSL} -- szyfry 
+symetryczne zazwyczaj wykorzystują proste operacje bitowe, podczas gdy np. RSA potrzebuje arytmetyki
+modularnej \footnotemark. Stąd, kryptografia asymetryczna często wykorzystywana jest do zainicjowania
+komunikacji i wygenerowania klucza (np. protokół Diffiego-Hellmana), który następnie jest używany do
+szyfrowania symetrycznego. Jednym z najszerzej znanych przykładów takiego schematu jest protokół
+SSL, który używa protokołu Diffiego-Hellmana w początkowej fazie komunikacji, by ustalić klucz,
+który używany będzie do zapewnienia bezpieczeństwa pozostałej jego części. Po zakończonym sukcesem
+procesie uwierzytelniania, do komunikacji używany jest szyfr symetryczny (najczęściej AES).
+
+\footnotetext{
+Cytowane materiały Intela pokazują niecałe 4000 operacji na sekundę przy 1024-bitowym kluczu RSA,
+oraz czasy rzędu kilku cykli na bajt dla szyfru symetrycznego AES -- różnica to co najmniej 3 
+rzędy wielkości.
+}
+
+
+
 \nocite{*}
 
 \bibliographystyle{cs-agh}
