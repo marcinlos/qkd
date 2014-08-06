@@ -183,10 +183,16 @@ znany jest w literaturze jako problem Diffiego-Hellmana\footnotemark. W praktyce
 zazwyczaj wybiera się podgrupę multiplikatywną pewnego ciała Galois \(\mathbb{Z}/p\mathbb{Z}\), a
 obliczenia sprowadzają się do znanej arytmetyki modularnej.
 
+\section{Problemy}
+
 Całe bezpieczeństwo protokołu opiera się na trudności problemu Diffiego-Hellmana. Rozwiązanie 
 problemu obliczania logarytmu dyskretnego (DLP) wystarcza do obliczenia klucza, pozwala 
 bowiem obliczyć \(a\) na podstawie znajomości \(g^a\), zatem problem Diffiego-Hellmana jest nie 
-trudniejszy niż DLP. Redukcja w drugą stronę nie jest znana\footnotemark. 
+trudniejszy niż DLP, jednak redukcja w drugą stronę w ogólnym przypadku nie jest znana\footnotemark.
+W przypadku problemu logarytmy dyskretnego niewiele wiadomo o faktycznej jego złożoności -- w
+szczególności, nie wiadomo, czy problem jest NP-zupełny -- jednak jak dotąd nie jest znany algorytm
+wielomianowy (przegląd istniejących algorytmów znaleźć można np. w \cite{Sutherland07}), więc uznać
+można go w chwili obecnej za problem praktycznie trudny.
 
 \footnotetext{
 Ogólny przypadek zdaje się pozostawać problemem otwartym, natomiast istnieją wyniki częściowe.
@@ -194,10 +200,10 @@ Dla pewnej klasy liczb pierwszych zostało pokazane, że problem Diffiego-Hellma
 niż problem logarytmu dyskretnego \cite{Goldwasser90}. 
 }
 
-Warto zaznaczyć, że jakkolwiek wielomianowy algorytm dla problemu logarytmu dyskretnego nie jest 
-znany\footnote{Przegląd ich znaleźć można np. w \cite{Sutherland07}}, to istnieje efektywny algorytm
-kwantowy \cite{Shor97}, zatem ewentualny rozwój komputerów kwantowych wymusi tak czy inaczej zarzucenie
-użycia protokołu Diffiego-Hellmana\footnotemark.
+Warto również zaznaczyć, że jakkolwiek klasyczny wielomianowy algorytm dla problemu logarytmu 
+dyskretnego nie jest znany, to istnieje efektywny algorytm kwantowy \cite{Shor97}, zatem ewentualny 
+rozwój komputerów kwantowych wymusi tak czy inaczej zarzucenie użycia protokołu Diffiego-Hellmana
+\footnotemark.
 
 \footnotetext{
 Na podobną przypadłość cierpi dużo znanych i powszechnie używanych obecnie algorytmów kryptografii
