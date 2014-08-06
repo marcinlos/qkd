@@ -156,7 +156,7 @@ czy są NP-zupełne.
 
 \section{Klasyczne metody generowania klucza}
 
-W tej sekcji przyjrzymy się pewnym klasycznym algorytmom dystrybucji (tworzenia) klucza, opartym
+W tej sekcji przyjrzymy się klasycznemu algorytmowi dystrybucji (tworzenia) klucza, opartemu
 na trudności pewnych problemów obliczeniowych.
 
 \subsection{Protokół Diffiego-Hellmana}
@@ -182,6 +182,21 @@ znane efektywne sposoby obliczenia \(g^{ab}\) na podstawie tych informacji. Prob
 znany jest w literaturze jako problem Diffiego-Hellmana\footnotemark. W praktyce jako grupę \(G\)
 zazwyczaj wybiera się podgrupę multiplikatywną pewnego ciała Galois \(\mathbb{Z}/p\mathbb{Z}\), a
 obliczenia sprowadzają się do znanej arytmetyki modularnej.
+
+\subsection{Wersja dla więcej niż dwóch uczestników}
+
+Zaprezentowany powyżej sposób postępowania można łatwo rozszerzyć na większą ilość uczestników,
+obliczając w ogólności \(g^{a_1 \cdots a_n}\), gdzie \(a_1,\ldots,a_n\) to losowo wybrane przez nich
+liczby. Protokół przebiega bardzo podobnie -- obliczane są i przekazywane odpowiednim osobom
+wartości potęg \(g\) odpowiadających każdym podzbiorom właściwym zbioru 
+\(\left\{a_1,\ldots,a_n\right\}\), t.j. \(g^{a_S}\), gdzie
+\[
+a_S = \prod_{i\in S}a_i,\ \ \ 
+\emptyset\neq S\varsubsetneq \left\{1,\ldots,n\right\}
+\]
+(dla przypadku \(n=2\) były to \(\left\{a_1=a\right\}\) oraz
+\(\left\{a_2=b\right\}\)). Podsłuchujący zna wszystkie te wartości, ale podobnie jak w wariancie
+podstawowym, nie jest w stanie odtworzyć z nich prosto samego \(g^{a_1 \cdots a_n}\).
 
 \section{Problemy}
 
