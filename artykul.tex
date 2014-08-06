@@ -68,6 +68,77 @@ rzędy wielkości.
 }
 
 
+\section{Szyfrowanie one-time pad}
+
+Jednym z najbardziej atrakcyjnych potencjalnych przypadków użycia dla ewentualnego w pełni bezpiecznego
+protokołu dystrybucji klucza jest z pewnością tzw. szyfr z kluczem jednorazowym (one-time pad). Jego
+idea opiera się na wykorzystaniu klucza długości nie mniejszej niż sama szyfrowana wiadomość, i
+wykonywaniu prostych operacji na fragmentach szyfrogramu i klucza. Przykład konkretnej implementacji:
+tekstujawny i klucz przedstawiane są jako ciągi znaków z pewnego alfabetu alfabetu \(n\)-znakowego 
+\(\mathcal{A}\), reprezentowanego przez liczby naturalne \(0,\ldots n-1\), tj. tekst jawny 
+\(T=t_1\ldots t_m\), klucz \(K=k_1\ldots k_m\), zaś szyfrogram powstaje poprzez dodawanie odpowiadających
+sobie znaków tekstu i klucza modulo \(n\), tj.
+\[
+S_i=\left(t_i\oplus k_i\right),\qquad a\oplus b \triangleq a+b \mod n
+\]
+Deszyfracja polega na odwróceniu tej operacji, tj. odejmowaniu kolejnych znaków klucza od znaków
+szyfrogramu. Szyfr ten jest całkowicie bezpieczny w sensie teorii informacji -- szyfrogram nie zawiera
+żadnej informacji o zaszyfrowanym tekście, poza maksymalną jego długością \cite{Shannon49}. Precyzyjnie
+wyrazić to można przy użyciu pojęć teorii informacji -- entropii i entropii warunkowej. Wartości te 
+stanowią miarę niepewności, informacji, które niesie ze sobą wystąpienie jakiegoś zdarzenia (w tym
+przypadku, wystąpienie danego tekstu jawnego, lub szyfrogramu).
+Dla dyskretnej zmiennej losowej \(X\), przyjmującej wartości \(x_1,\ldots,x_n\) z prawdopodobieństwami
+\(p(x_1),\ldots,p(x_n)\), entropia zdefiniowana jest jako
+\[
+\mathcal{H}(X)=-\sum_{i=1}^n p(x_i)\log p(x_i)
+\]
+zaś dla drugiej zmiennej \(Y\), o wartościach \(y_1,\ldots,y_m\) entropia warunkowa, mierząca niepewność
+co do wartości \(X\) gdy dana jest wartość \(Y\), wyraża się poprzez
+\[
+\mathcal{H}(X\mid Y)=-\sum_{i,j=1}^{n,m}p(x_i,y_j)\log \frac{p(x_i)}{p(x_i,y_j)}
+\]
+(dla \(p(x_i,y_j)=0\) w sumie przyjmujemy jako składnik \(0\)). Łatwo pokazać, że dla dowolnych \(X\),
+\(Y\) jest \(\mathcal{H}(X\mid Y)\leq \mathcal{H}(X)\). Jeśli za \(X\) przyjmiemy zmienną losową
+odpowiadającą rozkładowi tekstów jawnych, a za \(Y\) odpowiadających im szyfrogramów, intuicyjnie
+\(\mathcal{H}(X\mid Y)\) mierzy jak wiele informacji o tekście jawnym daje znajomość szyfrogramu --
+dla małych wartości daje dużo informacji (np. jeśli szyfrogramem byłby sam tekst jawny, z powyższego
+wzoru otrzymamy entropię warunkową równą \(0\)), zaś dla dużych -- niewiele. Dowód bezpieczeństwa szyfru
+one-time pad polega na pokazaniu, że dla w pełni losowego klucza, entropia warunkowa tekstu jawnego
+względem szyfrogramu jest równa entropii samego tekstu jawnego, tj. 
+\(\mathcal{H}(X\mid Y) = \mathcal{H}(X)\). Intuicyjnie, szyfrogram nie daje żadnej informacji o tekście
+jawnym, ta ,,ukryta'' informacja jest w kluczu.
+
+Powyższe rezultaty odnośnie szyfru z kluczem jednorazowym mają duże historyczne znaczenie teoretyczne.
+Aby jednak szyfr był faktycznie bezpieczny, konieczne jest spełnienie szeregu dość restrykcyjnych
+założeń.
+
+\begin{itemize}
+  \item Klucz musi być długości co najmniej takiej, jakiej jest tekst jawny
+  \item Klucz musi być idealnie losowy
+  \item Klucz może być wykorzystany tylko raz -- ponowne wykorzystanie klucza umożliwia kryptoanalizę
+    opartą np. na niejednorodności rozkładu tekstu jawnego \footnotemark.
+\end{itemize}
+
+\footnotetext{
+Przykładowo, w ekstremalnym przypadku gdy klucz jest jedną literą, każde wystąpienie danego znaku będzie
+odpowiadać takiemu samemu znakowi. Pomijając oczywisty atak typu bruteforce, patrząc na szyfrogram
+można z dużym prawdopodobieństwem stwierdzić, które jego znaki odpowiadają najczęściej występującym
+w języku, w którym napisany został tekst jawny, porównując po prostu częstotliwość wystąpień.
+}
+
+Wymagania te sprawiają, że używanie szyfru z kluczem jednorazowym w praktyce jest dość kłopotliwe.
+Szczególnie konieczność stosowania dużych, unikalnych kluczy, które obydwie strony komunikacji muszą
+posiadać przed jej rozpoczęciem. Wymaga to wcześniejszego przygotowania -- gdyby istniał sposób
+bezpiecznej transmisji klucza rozmiaru samej wiadomości bez możliwości przechwycenia go przez 
+potencjalnych napastników, równie dobrze można by użyć takiego kanału do przekazania samej wiadomości.
+
+Mimo tych problemów, szyfry z kluczem jednorazowym były stosunkowo popularne i często wykorzystywane
+w sytuacjach, gdzie komunikacja nie była częsta, a niezbędny był bardzo wysoki stopień bezpieczeństwa,
+np. przez sowieckich szpiegów w okresie zimnej wojny. Problemem była oczywiście dystrybucja kluczy
+-- przechowywane były one na bardzo małych, łatwych do ukrycia kartkach papieru, często nasączonych
+substancjami łatwopalnymi, by ułatwić natychmiastowe ich zniszczenie bez zostawienia śladów po użyciu.
+
+
 
 \nocite{*}
 
