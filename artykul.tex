@@ -361,11 +361,12 @@ przesyłanej informacji nie odpowiadają bezpośrednio wartościom nadawanych sy
 sposób zawarte w ciągu. Rozważania tego typu, w przeciwieństwie do dwóch pozostałych rodzin,
 swe źródło mają w praktycznych kwestiach implementacyjnych, w szczególności trudności związane
 z zaburzeniami fazy w BB84 przy przesyłaniu spolaryzowanych fotonów na duże odległości przy
-użyciu światłowodu\cite{Liu13}.
+użyciu światłowodu\cite{Liu13}. 
 
 Pierwszy algorytm tego typu to \emph{Differential Phase-Shift} (DPS)\cite{Inoue02}. Wartości
-kolejnych bitów zakodowane są w różnicy fazy kolejno przesyłanych sygnałów. Zostało udowodnione,
-że jest bezwarunkowo bezpieczny\cite{Wen09}. Istnieją też działające implementacje\cite{Liu13}.
+kolejnych bitów zakodowane są w różnicy fazy kolejno przesyłanych sygnałów. Dla wersji z jednym
+fotonem zostało udowodnione bezwarunkowe bezpieczeństwo\cite{Wen09}. Istnieją też działające 
+eksperymentalne implementacje\cite{Liu13}.
 
 Kolejnym obiecującym protokołem z tej dziedziny jest \emph{Coherent One-Way} (COW)\cite{Stucki05}.
 Działa w oparciu o pomiary czasu przybycia sygnału. Jest stosunkowo wydajny i prosty w implementacji.
@@ -555,6 +556,52 @@ Kluczowy jest krok 4, który pozwala wykryć interencję Ewy i oszacować jej ro
 poprzez porównanie obliczonych korelacji pomiędzy wynikami z wartościami przewidywanymi przez mechanikę
 kwantową. Dla splątanych qubitów w stanie podanym powyżej korelacje powinny być wysokie (w szczególności,
 nierówności Bella powinny być pogwałcone), natomiast ingerencja Ewy spowodować musi ich zmniejszenie.
+
+\section{Bezpieczeństwo, problemy, ograniczenia}
+
+\subsection{Czym jest ,,bezwarunkowe bezpieczeństwo''}
+
+Jedną z głównych celów i obietnic rozwoju kryptografii kwantowej jest znalezienie protokołów, których
+bezpieczeństwo oparte jest nie na trudności obliczeniowej, a na fundamentalnych prawach fizyki.
+Protokół jest \emph{bezwarunkowo bezpieczny}, jeśli jego bezpieczeństwo można udowodnić przy założeniu
+nieograniczonych zasobów pamięciowych i obliczeniowych przeciwnika\cite{Scarani09}. 
+
+Wiadomo dziś, że nie dla wszystkich problemów kryptograficznych mechanika kwantowa jest w stanie 
+dostarczyć protokołu bezwarunkowo bezpiecznego (np. nie jest to możliwe dla problemu zobowiązania 
+bitowego\cite{Mayers97}). Dla problemu QKD takie protokoły istnieją, i własność ta została formalnie
+udowodniona dla wielu wspomnianych w tym artykule rozwiązań. Należy jednak pamiętać, że mimo nazwy,
+pewne warunki \emph{muszą} być spełnione, by komunikacja mogła być bezpieczna. Jakkolwiek są one
+dość oczywiste, warto o nich pamiętać. W szczególności,
+
+\begin{itemize}
+  \item Ewa nie może mieć bezpośredniego dostępu do urządzeń używanych przez Alicję i Boba --
+    inaczej może w dowolny sposób wpływać na przebieg komunikacji, i otrzymać wszelkie informacje,
+    którymi dysponują jej uczestnicy bez konieczności podsłuchiwania kanału kwantowego
+  \item Generator losowy używany do wytwarzania danych używanych podczas przebiegu protokołu musi
+    działać poprawnie, być w istocie w pełni losowy
+  \item Kanał klasyczny musi być uwierzytelniony bezwarunkowo bezpiecznym protokołem, inaczej
+    Ewa może aktywnie uczestniczyć w komunikacji
+  \item Ewa musi podlegać prawom fizyki
+\end{itemize}
+
+Warto szczególnie zwrócić uwagę na warunek trzeci -- nawet ,,bezwarunkowo bezpieczne'' protokoły
+kwantowe są podatne na atak typu man-in-the-middle, jeśli tylko są one możliwe do przeprowadzenia.
+Bezpieczeństwo oferowane przez QKD może też zostać rzecz jasna zniweczone przez rozmaite inne
+,,nieuczciwe'' działania, np. uniemożliwianie wykorzystania kanału kwantowego (zakłócanie/niszczenie),
+a w efekcie zmuszenie uczestników bądź to do zarzucenia prób skomunikowania się, bądź użycia mniej
+bezpiecznych sposobów. Tego rodzaju ataki wykraczają poza zbiór dopuszczalnych dla Ewy działań
+interesujących z punktu widzenia działania samego protokołu, i generalnie nie są rozważane przy
+analizie ich bezpieczeństwa.
+
+
+\section{Istniejące implementacje}
+
+\subsection{Implementacje eksperymentalne}
+
+\subsection{Implementacje komercyjne}
+
+
+\section{Podsumowanie}
 
 \nocite{*}
 
