@@ -312,6 +312,29 @@ zewnętrznych \cite{Ekert91,Ekert12}.
 
 \subsection{Mechanizm odbioru informacji}
 
+Kolejny element różniący zaproponowane praktyczne protokoły QKD to sposób odbioru informacji.
+Rozróżniamy trzy podstawowe rodziny: zmiennej dyskretnej, zmiennej ciągłej, oraz \emph{distributed
+phase reference} \cite{Scarani09}.
+
+\subsubsection*{Kodowanie zmiennej dyskretnej (\emph{discrete variable})}
+
+Jest to najstarsza rozważana rodzina protokołów. Obydwa pierwotne protokoły -- BB84 i E91 -- do niej 
+należą. Również dzisiaj cieszy się dużą popularnością, i najczęściej wykorzystywana jest w faktycznych
+implementacjach. W protokołach typu zmiennej dyskretnej informacje przenoszone są przez pojedyncze 
+cząstki. Zazwyczaj do komunikacji wykorzystywane są spolaryzowane fotony. Narzędzie odbioru informacji
+stanowi licznik fotonów.
+
+Na przestrzeni lat powstało kilka innych protokołów wykorzystujących kodowanie zmiennej dyskretnej.
+Warto wśród nich wymienić SARG04 \cite{Scarani04}. Oparty jest na pomyśle podobnym do BB84, jednak
+różnice w procesie uzgadniania klucza po samej komunikacji sprawiają, że jest znacznie bardziej
+odporny na pewną klasę ataków (PNS -- więcej w sekcji dot. bezpieczeństwa), na którą ze względów
+praktycznych podatny jest BB84, dzięki czemu jest bezpieczniejszy i prostszy w implementacji.
+
+
+\subsubsection*{Kodowanie zmiennej ciągłej (\emph{continuous variable})}
+
+\subsubsection*{Distributed phase reference}
+
 
 \section{Mechanizmy pomocnicze}
 
