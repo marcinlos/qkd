@@ -353,9 +353,75 @@ wystarczającej ilości entropii do wygenerowania odpowiednio długiego klucza. 
 przerwanie protokołu. 
 
 
-\section{Przykładowe algorytmy QKD}
+\section{Protokoły QKD}
 
+W tej sekcji omówione zostaną przykładowe protokoły QKD. Ogólne założenia odnośnie sytuacji są
+następujące: Alicja i Bob chcą stworzyć wspólny klucz, nieznany podsłuchiwaczowi -- Ewie. Dysponują
+dwoma kanałami informacji: klasycznym, który jest w pełni bez przeszkód podsłuchiwany przez Ewę,
+oraz kwantowym, podlegającym prawom i ograniczeniom mechaniki kwantowej. Kanał klasyczny jest
+uwierzytelniony -- Alicja i Bob są w stanie zidentyfikować się nawzajem, Ewa widzi całą komunikację,
+ale nie jest w stanie w niej uczestniczyć \footnotemark. Kanał kwantowy jest otwarty na wszelkie 
+manipulacje ze strony Ewy. Celem protokołu jest uzgodnienie tajnego klucza, bądź zerwanie komunikacji,
+jeśli okaże się to niemożliwe.
 
+\footnotetext{
+Innymi słowy, na kanale klasycznym nie jest możliwy atak typu man-in-the-middle.
+}
+
+\subsection{BB84}
+
+Pierwszy \cite{Scarani09} protokół kwantowej dystrybucji klucza został opublikowany w 1984 przez
+C. Benneta i G. Brassarda \cite{bb84}. 
+
+Rozważmy dwie bazy przestrzeni qubitów -- \(\mathcal{B}_1 = \left\{\ \Ket{+x}, \Ket{-x}\,\right\}\), 
+będące ortonormalnymi wektorami własnymi operatora pomiaru \(\sigma_x\), oraz 
+\(\mathcal{B}_2 = \left\{\ \Ket{+z}, \Ket{-z}\,\right\}\), będące ortonormalnymi wektorami własnymi
+operatora pomiaru \(\sigma_z\), gdzie \(\sigma_z\), \(\sigma_z\) to operatory Pauliego. Protokół
+przebiega następująco:
+
+\begin{enumerate}
+  \item Alicja wybiera losowo \(n\) bitów \(a=a_1\ldots a_n\)
+  \item Dla każdego \(i\in\left\{1,\ldots,n\right\}\):
+    \begin{enumerate}
+      \item Alicja wybiera losowo jedną z baz -- \(\mathcal{B}_{b_i}\)
+      \item Alicja przygotowuje qubit w stanie odpowiadającym \(a_i\)-temu elementowi wybranej
+        bazy, i wysyła go Bobowi
+      \item Bob wybiera losowo jedną z baz -- \(\mathcal{B}_{\tilde{b}_i}\), i mierzy w niej
+        odebrany qubit, otrzymując wartość \(\tilde{a}_i\).
+    \end{enumerate}
+  \item Na kanale klasycznym Alicja i Bobowi wymieniają informację o wybranych w poprzednim
+    kroku bazach, t.j. \(b_1,\ldots,b_n\) oraz \(\tilde{b}_1,\ldots,\tilde{b}_n\), odrzucają te
+    wartości, dla których ich bazy się nie zgadzają
+  \item Na kanale klasycznym Alicja i Bob ujawniają pewną część swoich kluczy -- wartości 
+    \(a_i\), \(\tilde{a}_i\) -- aby oszacować, jaka część komunikacji została podsłuchana
+  \item Jeśli wystarczająco mała, używają jakiegoś schematu privacy amplification do wygenerowania
+    bezpiecznego klucza, w przeciwnym wypadku protokół kończy się niepowodzeniem
+\end{enumerate}
+
+Po kroku 3, Alicja i Bob dysponują w przybliżeniu \(N/2\) qubitami nadanymi i odebranymi w tej samej
+bazie. W przypadku braku ingerencji z zewnątrz, ich wartości \(a_i\) i \(\tilde{a}_i\) powinny być
+identyczne. Jeśli jednak Ewa zdecyduje się na prosty atak \emph{intercept-and-resend}, polegający
+na zmierzeniu qubitu nadanego przez Alicję i odesłaniu rezultatu do Boba, z dużym prawdopodobieństwem
+pojawią się różnice. Konkretnie, jeśli Ewa zmierzy qubit w odpowiedniej bazie, takiej, w jakiej
+przygotowała go Alicja, to wynik pozostanie niezmieniony, i qubit, który trafi do Boba, będzie taki
+sam jak ten, który wysłała Alicja. Jeśli jednak Ewa zmierzy qubit w innej bazie, stanie się inaczej.
+Między wartościami własnymi -- stanami qubitu po pomiarze -- zachodzi relacja
+\[
+\Ket{\pm x}=\frac{1}{\sqrt{2}}\left(\Ket{+z}\pm\Ket{-z}\right)
+\]
+i podobnie dla \(\Ket{\pm z}\). Stąd, w wyniku pomiaru w niewłaściwej bazie otrzymamy stan, który
+po wykonaniu następnie pomiaru w bazie właściwej da jeden z dwóch możliwych wyników z takim samym
+prawdopodobieństwem. Jeśli więc Ewa wykona pomiar w niewłaściwej bazie, i prześle wynik do Boba,
+który wykona pomiar w bazie właściwej, w połowie przypadków uzyska niepoprawny wynik. Podsumowując,
+Ewa wykonując pomiar wprowadza błąd w \(1/4\) przypadków. Prawdopodobieństwo, że jej manipulacje
+pozostaną niewykryte spada więc wykładniczo z ilością przesyłanych qubitów. Poznaje natomiast 
+poprawną wartość połowy przechwyconych qutibów. 
+
+Okazuje się, że to wystarczająco dużo, by była w stanie uniemożliwić zakończenie protokołu sukcesem.
+Jeśli Ewa przechwytuje w ten sposób co najmniej \(\approx 70\%\) komunikacji na kanale kwantowym, to 
+nie da się skonstruować wspólnego tajnego klucza -- Ewa ma więcej informacji o przesyłanych wartościach, 
+niż Bob \cite{Csiszar78,Scarani09}. Wciąż jednak nie jest w stanie uzyskać ich bez wiedzy Alicji
+i Boba, więc bezpieczeństwo jest zachowane.
 
 \nocite{*}
 
