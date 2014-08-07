@@ -601,8 +601,8 @@ dla różnych konkretnych algorytmów znaleźć można w \cite{Scarani09}. Istot
 że dowody dla prostych przypadków teoretycznych niekoniecznie przekładają się na prawdziwe
 bezpieczeństwo faktycznej implementacji. Dla protokołu BB84 udowodnione zostało bezwarunkowe
 bezpieczeństwo\cite{Inamori07}, jednak dowód dotyczy wersji, gdzie informacje przekazywane są przy 
-użyciu pojedynczych fotonów. Ze względu na ograniczenia technologiczne, w praktyce używane są większe 
-ich grupy, co daje nowe możliwości podsłuchiwaczowi.
+użyciu pojedynczych fotonów. Ze względu na ograniczenia technologiczne, w praktyce używane są źródła,
+które czasem emitują większą ilość fotonów, co daje nowe możliwości podsłuchiwaczowi.
 
 
 \subsection{Przykładowe typy ataków}
@@ -629,6 +629,15 @@ Okazuje się, że możliwość przeprowadzenia przez Ewę takiego ataku jest uza
 wprowadzanych przez kanał, i jeśli nie jest ona zbyt duża, pomimo przechwycenia przez Ewę w ten 
 sposób części informacji wciąż możliwe jest stworzenie tajnego klucza\cite{Inamori07}, wymaga to
 jednak znacznie większej ilości danych przesyłanych kanałem kwantowym.
+
+Jedną z najpopularniejszych strategii obronnych przed atakiem typu PNS stanowi użycie tzw. 
+\emph{decoy states}\cite{Lo05,Ma05}. Alicja, poza stanami wykorzystywanymi do przesyłania danych
+w standardowej wersji BB84, przygotowuje także tzw. \emph{decoy states}, których jedynym celem
+jest wykrywanie podsłuchiwania. Niska wydajność rozwiązań umożliwiających stworzenie tajnego klucza
+w obliczu ataku PNS wynikała w dużej mierze z pesymistycznych oszacowań pewnych parametrów
+komunikacji, z powodo braku lepszych możliwości. W oparciu o ilość odebranych fotonów i ilość błędów,
+Alicja i Bob mogą wyznaczyć te parametry znacznie bardziej precyzyjnie, co umożliwia bardziej
+efektywne wykorzystanie wygenerowanych danych.
 
 
 \subsubsection*{Atak oparty o klonowanie}
