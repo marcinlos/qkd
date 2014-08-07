@@ -306,8 +306,8 @@ kwantowej dystrybucji klucza -- BB84 \cite{bb84,Scarani09}.
 podsłuchiwacz, wykonując pomiar, wpływa wówczas na stan całego systemu. Pozwala to także na określenie
 ilości informacji, które zostały przechwycone. Przykładowo omówiony w dalszej części, historycznie
 drugi protokół A. Ekerta wykrywa podsłuch poprzez wykorzystanie do komunikacji dwuqubitowych systemów
-w stanie Bella  testowanie nierówności Bella \(\frac{1}{\sqrt{2}}\left(\Ket{01}+\Ket{10}\right)\) 
--- jeśli korelacja wyników nie narusza nierówności Bella, stan systemu uległ zmianie w wyniku działań
+w stanie Bella \(\frac{1}{\sqrt{2}}\left(\Ket{01}+\Ket{10}\right)\) -- jeśli po zakończeniu protokołu
+korelacja wyników nie narusza nierówności Bella, stan systemu uległ zmianie w wyniku działań
 zewnętrznych \cite{Ekert91,Ekert12}.
 
 \subsection{Mechanizm odbioru informacji}
@@ -325,15 +325,37 @@ cząstki. Zazwyczaj do komunikacji wykorzystywane są spolaryzowane fotony. Narz
 stanowi licznik fotonów.
 
 Na przestrzeni lat powstało kilka innych protokołów wykorzystujących kodowanie zmiennej dyskretnej.
-Warto wśród nich wymienić SARG04 \cite{Scarani04}. Oparty jest na pomyśle podobnym do BB84, jednak
-różnice w procesie uzgadniania klucza po samej komunikacji sprawiają, że jest znacznie bardziej
-odporny na pewną klasę ataków (PNS -- więcej w sekcji dot. bezpieczeństwa), na którą ze względów
-praktycznych podatny jest BB84, dzięki czemu jest bezpieczniejszy i prostszy w implementacji.
+Warto wśród nich wymienić B92 -- uproszczoną wersję BB84 \cite{Bennett92}. Główna różnica polega na
+wykorzystaniu dwóch stanów qubitu, zamiast czterech. Kolejny ciekawy pomysł to SARG04 \cite{Scarani04}.
+Podobnie jak BB84, udowodnione zostało jego bezwarunkowe bezpieczeństwo. Oparty jest na pomyśle 
+podobnym do BB84, jednak różnice w procesie uzgadniania klucza po samej komunikacji sprawiają, że jest
+znacznie bardziej odporny na pewną klasę ataków (PNS -- więcej w sekcji dot. bezpieczeństwa), na którą 
+ze względów praktycznych podatny jest BB84, dzięki czemu jest bezpieczniejszy i prostszy w implementacji.
 
 
 \subsubsection*{Kodowanie zmiennej ciągłej (\emph{continuous variable})}
 
+Protokoły zmiennej dyskretnej nie są pozbawione wad. Jedną z nich jest efektywność -- jakkolwiek
+wymagana do ich implementacji technologia od dawna istnieje, to liczniki fotonów są stosunkowo
+powolne i stratne w stosunku do zaproponowanych później rozwiązań \cite{Reid00,Cerf01}. Protokoły
+zmiennej ciągłej oparte są na efektach i pomiarach optycznych przy użyciu tzw. odbiornika homodynowego,
+umożliwiającego pomiar składowej kwadraturowej odbieranego sygnału. Pomiary takie przeprowadzane
+są znacznie bardziej wydajnie i niezawodnie, aniżeli wykrywanie fotonów.
+
+Mimo odmiennej natury pomiarów, bezpieczeństwo komunikacji gwarantują te same zasady, co w przypadku
+zmiennej dyskretnej. Przykładowo, protokół zaproponowany w \cite{Reid00} opiera się na korelacjach 
+podobnych do tych opisanych przez Einsteina, Podolskiego i Rosena dla cząstek, jednak obowiązujących 
+dla składników kwadraturowych całych wiązek, mimo przestrzennej separacji (podobnie jak w protokole 
+Ekerta).
+
+Ważną podrodzinę rodziny protokołów zmiennej ciągłej stanowią protokoły Gaussowskie, wykorzystujące
+stany światła z modulacją o rozkładzie Gaussowskim. Jednym z pierwszycht takich protokołów jest 
+\cite{Cerf01}. Więcej przykładów wraz z krótkim opisem znaleźć można w \cite{Scarani09}.
+
+
 \subsubsection*{Distributed phase reference}
+
+
 
 
 \section{Mechanizmy pomocnicze}
@@ -517,7 +539,8 @@ Podobnie jak w przypadku BB84, Alicja i Bob mogą ujawnić pewne fragmenty swoic
 stopień błędu, który mógł powstać nawet bez udziału podsłuchiwacza, na skutek niedoskonałości systemu.
 Kluczowy jest krok 4, który pozwala wykryć interencję Ewy i oszacować jej rozmiar. Odbywa się to
 poprzez porównanie obliczonych korelacji pomiędzy wynikami z wartościami przewidywanymi przez mechanikę
-kwantową. Dla splątanych qubitów w stanie podanym powyżej korelacje powinny być wysokie (w szczególności, nierówności Bella powinny być pogwałcone), natomiast ingerencja Ewy spowodować musi ich zmniejszenie.
+kwantową. Dla splątanych qubitów w stanie podanym powyżej korelacje powinny być wysokie (w szczególności,
+nierówności Bella powinny być pogwałcone), natomiast ingerencja Ewy spowodować musi ich zmniejszenie.
 
 \nocite{*}
 
