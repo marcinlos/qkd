@@ -52,9 +52,9 @@ bezpieczna dystrybucja klucza, od której niejednokrotnie zależało powodzenie 
 a więc życie żołnieży, była zadaniem niełatwym. 
 
 Dzisiaj, jakkolwiek dysponujemy kryptografią asymetryczną, szyfry symetryczne wciąż są szeroko 
-stosowane, m. in. ze względu na znacznie większą wydajność \cite{IntelAES, IntelSSL} -- szyfry 
+stosowane, m. in. ze względu na znacznie większą wydajność\cite{IntelAES, IntelSSL} -- szyfry 
 symetryczne zazwyczaj wykorzystują proste operacje bitowe, podczas gdy np. RSA potrzebuje arytmetyki
-modularnej \footnotemark. Stąd, kryptografia asymetryczna często wykorzystywana jest do zainicjowania
+modularnej\footnotemark. Stąd, kryptografia asymetryczna często wykorzystywana jest do zainicjowania
 komunikacji i wygenerowania klucza (np. protokół Diffiego-Hellmana), który następnie jest używany do
 szyfrowania symetrycznego. Jednym z najszerzej znanych przykładów takiego schematu jest protokół
 SSL, który używa protokołu Diffiego-Hellmana w początkowej fazie komunikacji, by ustalić klucz,
@@ -75,7 +75,7 @@ Jednym z najbardziej atrakcyjnych potencjalnych przypadków użycia dla ewentual
 protokołu dystrybucji klucza jest z pewnością tzw. szyfr z kluczem jednorazowym (one-time pad). Jego
 idea opiera się na wykorzystaniu klucza długości nie mniejszej niż sama szyfrowana wiadomość, i
 wykonywaniu prostych operacji na fragmentach szyfrogramu i klucza. Przykład konkretnej implementacji:
-tekstujawny i klucz przedstawiane są jako ciągi znaków z pewnego alfabetu alfabetu \(n\)-znakowego 
+tekst jawny i klucz przedstawiane są jako ciągi znaków z pewnego alfabetu alfabetu \(n\)-znakowego 
 \(\mathcal{A}\), reprezentowanego przez liczby naturalne \(0,\ldots n-1\), tj. tekst jawny 
 \(T=t_1\ldots t_m\), klucz \(K=k_1\ldots k_m\), zaś szyfrogram powstaje poprzez dodawanie odpowiadających
 sobie znaków tekstu i klucza modulo \(n\), tj.
@@ -84,7 +84,7 @@ S_i=\left(t_i\oplus k_i\right),\qquad a\oplus b \triangleq a+b \mod n
 \]
 Deszyfracja polega na odwróceniu tej operacji, tj. odejmowaniu kolejnych znaków klucza od znaków
 szyfrogramu. Szyfr ten jest całkowicie bezpieczny w sensie teorii informacji -- szyfrogram nie zawiera
-żadnej informacji o zaszyfrowanym tekście, poza maksymalną jego długością \cite{Shannon49}. Precyzyjnie
+żadnej informacji o zaszyfrowanym tekście, poza maksymalną jego długością\cite{Shannon49}. Precyzyjnie
 wyrazić to można przy użyciu pojęć teorii informacji -- entropii i entropii warunkowej. Wartości te 
 stanowią miarę niepewności, informacji, które niesie ze sobą wystąpienie jakiegoś zdarzenia (w tym
 przypadku, wystąpienie danego tekstu jawnego, lub szyfrogramu).
@@ -117,7 +117,7 @@ założeń.
   \item Klucz musi być długości co najmniej takiej, jakiej jest tekst jawny
   \item Klucz musi być idealnie losowy
   \item Klucz może być wykorzystany tylko raz -- ponowne wykorzystanie klucza umożliwia kryptoanalizę
-    opartą np. na niejednorodności rozkładu tekstu jawnego \footnotemark.
+    opartą np. na niejednorodności rozkładu tekstu jawnego\footnotemark.
 \end{itemize}
 
 \footnotetext{
@@ -142,10 +142,10 @@ substancjami łatwopalnymi, by ułatwić natychmiastowe ich zniszczenie bez zost
 Mimo to, trudno wyobrazić sobie używanie takiego systemu współcześnie, do szyfrowania komunikacji
 ,,na codzień''. Fizyczna dystrybucja kluczy zdaje się być zbyt niepraktycznym rozwiązaniem w sytuacji,
 gdy komunikacja następuje pomiędzy wieloma parami uczestników, dynamicznie, i przesyłane są duże
-ilości danych. Co więcej, zostało udowodnione \cite{Shannon49}, że każdy szyfr bezpieczy z punktu
+ilości danych. Co więcej, zostało udowodnione\cite{Shannon49}, że każdy szyfr bezpieczy z punktu
 widzenia teorii informacji ma podobnie kłopotliwe wymagania. W obliczu braku w pełni bezpiecznych,
 szybkich i wygodnych protokołów dystrybucji klucza zmuszeni jesteśmy korzystać z szyfrów, których
-bezpieczeństwo oparte jest jedynie o przypuszczalną \footnotemark trudność obliczeniową pewnych 
+bezpieczeństwo oparte jest jedynie o przypuszczalną\footnotemark trudność obliczeniową pewnych 
 problemów algorytmicznych, jak faktoryzacja, czy obliczanie logarytmu dyskretnego.
 
 \footnotetext{
@@ -163,7 +163,7 @@ na trudności pewnych problemów obliczeniowych.
 \subsection{Protokół Diffiego-Hellmana}
 
 Przypuszczalnie najszerzej wykorzystywanym dziś protokołem uzgadniania klucza jest protokół 
-Diffiego-Hellmana \cite{dh76}. Pozwala on dwóm komunikującym się stroną bezpiecznie stworzyć wspólny, 
+Diffiego-Hellmana\cite{dh76}. Pozwala on dwóm komunikującym się stroną bezpiecznie stworzyć wspólny, 
 tajny klucz tak, że ewentualny podsłuchiwacz, zdolny przechwycić całość komunikacji w obydwie strony,
 nie jest w stanie w prosty sposób wyznaczyć jego wartości.
 
@@ -207,24 +207,24 @@ bowiem obliczyć \(a\) na podstawie znajomości \(g^a\), zatem problem Diffiego-
 trudniejszy niż DLP, jednak redukcja w drugą stronę w ogólnym przypadku nie jest znana\footnotemark.
 W przypadku problemu logarytmu dyskretnego niewiele wiadomo o faktycznej jego złożoności -- w
 szczególności, nie wiadomo, czy problem jest NP-zupełny -- jednak jak dotąd nie jest znany algorytm
-wielomianowy (przegląd istniejących algorytmów znaleźć można np. w \cite{Sutherland07}), więc uznać
+wielomianowy (przegląd istniejących algorytmów znaleźć można np. w\cite{Sutherland07}), więc uznać
 można go w chwili obecnej za problem praktycznie trudny.
 
 \footnotetext{
 Ogólny przypadek zdaje się pozostawać problemem otwartym, natomiast istnieją wyniki częściowe.
 Dla pewnej klasy liczb pierwszych zostało pokazane, że problem Diffiego-Hellmana jest nie prostszy
-niż problem logarytmu dyskretnego \cite{Goldwasser90}. 
+niż problem logarytmu dyskretnego\cite{Goldwasser90}. 
 }
 
 Warto również zaznaczyć, że jakkolwiek klasyczny wielomianowy algorytm dla problemu logarytmu 
-dyskretnego nie jest znany, to istnieje efektywny algorytm kwantowy \cite{Shor97}, zatem ewentualny 
+dyskretnego nie jest znany, to istnieje efektywny algorytm kwantowy\cite{Shor97}, zatem ewentualny 
 rozwój komputerów kwantowych wymusi tak czy inaczej zarzucenie użycia protokołu Diffiego-Hellmana
 \footnotemark.
 
 \footnotetext{
 Na podobną przypadłość cierpi dużo znanych i powszechnie używanych obecnie algorytmów kryptografii
 asymetrycznej, m. in. RSA -- efektywny kwantowy algorytm faktoryzacji opisany jest w tej samej
-pracy \cite{Shor97}.
+pracy\cite{Shor97}.
 }
 
 \section{Quantum Key Distribution}
@@ -241,7 +241,7 @@ obliczeniowe.
 
 W tym okresie możliwe było już precyzyjne wyrażanie
 takich idei. Pojęcie algorytmu, intuicyjnie rozumiane już od starożytności, w miarę rozwoju 
-matematyki coraz głośniej domagało się ścisłej definicji. Dziesiąty problem Hilberta \cite{Gray01}
+matematyki coraz głośniej domagało się ścisłej definicji. Dziesiąty problem Hilberta\cite{Gray01}
 dotyczy algorytmu rozwiązywania wielomianowych równań Diofantycznych. O ile oczekiwana odpowiedź 
 mogła zostać łatwo udzielona poprzez jego znalezienie i udowodnienie poprawności (nikt prawdopodobnie
 nie miałby wątpliwości, czy zaprezentowany rezultat jest faktycznie ,,algorytmem''), to pokazanie,
@@ -300,7 +300,7 @@ Gwarantuje to połączenie dwóch faktów: po pierwsze, podsłuchiwacz nie jest 
 (t.j. dokonać pomiaru) bez zburzenia jej (efekt obserwatora), po drugie zaś nie jest w stanie wykonać
 kopii przechwyconego stanu, na której mógłby wykonać pomiar zamiast na nim (tw. o zakazie klonowania).
 Historycznie rodzina ta pojawiła się jako pierwsza, należy do niej pierwszy opublikowany protokół
-kwantowej dystrybucji klucza -- BB84 \cite{bb84,Scarani09}.
+kwantowej dystrybucji klucza -- BB84\cite{bb84,Scarani09}.
 
 \textbf{Protokoły oparte na splątaniu} wykorzystuje w komunikacji stany splątane i fakt, że 
 podsłuchiwacz, wykonując pomiar, wpływa wówczas na stan całego systemu. Pozwala to także na określenie
@@ -314,7 +314,7 @@ zewnętrznych\cite{Ekert91,Ekert12}.
 
 Kolejny element różniący zaproponowane praktyczne protokoły QKD to sposób odbioru informacji.
 Rozróżniamy trzy podstawowe rodziny: zmiennej dyskretnej, zmiennej ciągłej, oraz \emph{distributed
-phase reference} \cite{Scarani09}.
+phase reference}\cite{Scarani09}.
 
 \subsubsection*{Kodowanie zmiennej dyskretnej (\emph{discrete variable})}
 
@@ -325,8 +325,8 @@ cząstki. Zazwyczaj do komunikacji wykorzystywane są spolaryzowane fotony. Narz
 stanowi licznik fotonów.
 
 Na przestrzeni lat powstało kilka innych protokołów wykorzystujących kodowanie zmiennej dyskretnej.
-Warto wśród nich wymienić B92 -- uproszczoną wersję BB84 \cite{Bennett92}. Główna różnica polega na
-wykorzystaniu dwóch stanów qubitu, zamiast czterech. Kolejny ciekawy pomysł to SARG04 \cite{Scarani04}.
+Warto wśród nich wymienić B92 -- uproszczoną wersję BB84\cite{Bennett92}. Główna różnica polega na
+wykorzystaniu dwóch stanów qubitu, zamiast czterech. Kolejny ciekawy pomysł to SARG04\cite{Scarani04}.
 Podobnie jak BB84, udowodnione zostało jego bezwarunkowe bezpieczeństwo. Oparty jest na pomyśle 
 podobnym do BB84, jednak różnice w procesie uzgadniania klucza po samej komunikacji sprawiają, że jest
 znacznie bardziej odporny na pewną klasę ataków (PNS -- więcej w sekcji dot. bezpieczeństwa), na którą 
@@ -337,20 +337,20 @@ ze względów praktycznych podatny jest BB84, dzięki czemu jest bezpieczniejszy
 
 Protokoły zmiennej dyskretnej nie są pozbawione wad. Jedną z nich jest efektywność -- jakkolwiek
 wymagana do ich implementacji technologia od dawna istnieje, to liczniki fotonów są stosunkowo
-powolne i stratne w stosunku do zaproponowanych później rozwiązań \cite{Reid00,Cerf01}. Protokoły
+powolne i stratne w stosunku do zaproponowanych później rozwiązań\cite{Reid00,Cerf01}. Protokoły
 zmiennej ciągłej oparte są na efektach i pomiarach optycznych przy użyciu tzw. odbiornika homodynowego,
 umożliwiającego pomiar składowej kwadraturowej odbieranego sygnału. Pomiary takie przeprowadzane
 są znacznie bardziej wydajnie i niezawodnie, aniżeli wykrywanie fotonów.
 
 Mimo odmiennej natury pomiarów, bezpieczeństwo komunikacji gwarantują te same zasady, co w przypadku
-zmiennej dyskretnej. Przykładowo, protokół zaproponowany w \cite{Reid00} opiera się na korelacjach 
+zmiennej dyskretnej. Przykładowo, protokół zaproponowany w\cite{Reid00} opiera się na korelacjach 
 podobnych do tych opisanych przez Einsteina, Podolskiego i Rosena dla cząstek, jednak obowiązujących 
 dla składników kwadraturowych całych wiązek, mimo przestrzennej separacji (podobnie jak w protokole 
 Ekerta).
 
 Ważną podrodzinę rodziny protokołów zmiennej ciągłej stanowią protokoły Gaussowskie, wykorzystujące
 stany światła z modulacją o rozkładzie Gaussowskim. Jednym z pierwszycht takich protokołów jest 
-\cite{Cerf01}. Więcej przykładów wraz z krótkim opisem znaleźć można w \cite{Scarani09}.
+\cite{Cerf01}. Więcej przykładów wraz z krótkim opisem znaleźć można w\cite{Scarani09}.
 
 
 \subsubsection*{Distributed phase reference}
@@ -369,13 +369,13 @@ umożliwiających ich wykrywanie i korektę. Wyzwanie stanowi fakt, że konieczn
 komunikacja na kanale klasycznym, podsłuchiwanym z założenia w pełni i bezkarnie przez Ewę -- 
 pożądana zatem jest minimalizacja informacji w ten sposób ujawnionych.
 
-Jednym z najpopularniejszych rozwiązań tego problemu jest tzw. protokół \emph{Cascade} \cite{Brassard94}.
+Jednym z najpopularniejszych rozwiązań tego problemu jest tzw. protokół \emph{Cascade}\cite{Brassard94}.
 W przypadku kanałów o nawet stosunkowo dużym współczynniku błędu (ilość błędnie przekazanych wartości
 \(\leq 15\%\)), pozwala on w czasie wielomianowym usunąć niezgodności danych, ujawniając przy tym
 ilość informacji bliską minimalnej możliwej. Algorytm polega mniej więcej na wielokrotnym dzieleniu 
 danych na bloki, obliczaniu bitów parzystości i ewentualnej korekcie poprzez lokalizację błędu przy
 użyciu wyszukiwania binarnego (sprawdzając parzystości podbloków). Szczegółowy opis zostanie tu
-pominięty, znaleźć można go w cytowanym artykule, wraz z dokładną analizą \cite{Brassard94}.
+pominięty, znaleźć można go w cytowanym artykule, wraz z dokładną analizą\cite{Brassard94}.
 
 
 \subsection{Privacy amplification}
@@ -385,7 +385,7 @@ informacją, jaka ich część została przechwycona przez podsłuchiwacza -- Ew
 stwierdzić, która część danych została przechwycona. Aby więc protokoły tego rodzaju miały jakieś
 praktyczne zastosowanie, konieczny jest sposób przekształcenai tych częściowo przechwyconych informacji
 w klucz mniejszy, ale taki, o którym Ewa nie posiada żadnych informacji. Metody pozwalające to osiągnąć
-znane są jako \emph{privacy amplification} \cite{Watanabe07}.
+znane są jako \emph{privacy amplification}\cite{Watanabe07}.
 
 Dla ilustracji rozważmy prosty przykład: Alicja i Bob posiadają klucz dwubitowy \(r = b_1 b_2\), oraz
 wiedzą, że Ewa przechwyciła jeden z bitów. Alicja i Bob decydują jako klucza właściwego użyć alternatywy
@@ -397,7 +397,7 @@ danych, konieczne jest zatem wzięcie pod uwagę również rozkład prawdopodobi
 Formalnie tego typu stwierdzenia wyrażać i dowodzić można w ramach teorii informacji, przy użyciu pojęć
 entropii i entropii względnej, wprowadzonych w sekcji \ref{one-time-pad}.
 
-Istnieją dwie główne rodziny metod privacy amplification -- oparte o kodowanie liniowe, oraz o
+Istnieją dwie główne rodziny metod privacy amplification -- oparte o kodowanie liniowe oraz o
 haszowanie uniwersalne.
 
 \subsubsection*{Kody liniowe}
@@ -411,7 +411,7 @@ którymi dysponuje Ewa.
 
 \subsubsection*{Uniwersalne funkcje haszujące}
 
-Druga rodzina wykorzystuje do tworzenia klucza uniwersalne funkcje haszujące \cite{Bennett95,Watanabe07}.
+Druga rodzina wykorzystuje do tworzenia klucza uniwersalne funkcje haszujące\cite{Bennett95,Watanabe07}.
 Wybierając losową funkcję haszującą z pewnej klasy uniwersalnej i obliczając jej wartość na kluczu
 otrzymujemy podobnie jak w przypadku kodów liniowych krótszy klucz o dużej entropii. Jest to w pewnym
 sensie metoda ogólniejsza niż użycie kodów liniowych, bowiem zbiór wszystkich przekształceń liniowych
@@ -434,7 +434,7 @@ następujące: Alicja i Bob chcą stworzyć wspólny klucz, nieznany podsłuchiw
 dwoma kanałami informacji: klasycznym, który jest w pełni bez przeszkód podsłuchiwany przez Ewę,
 oraz kwantowym, podlegającym prawom i ograniczeniom mechaniki kwantowej. Kanał klasyczny jest
 uwierzytelniony -- Alicja i Bob są w stanie zidentyfikować się nawzajem, Ewa widzi całą komunikację,
-ale nie jest w stanie w niej uczestniczyć \footnotemark. Kanał kwantowy jest otwarty na wszelkie 
+ale nie jest w stanie w niej uczestniczyć\footnotemark. Kanał kwantowy jest otwarty na wszelkie 
 manipulacje ze strony Ewy. Celem protokołu jest uzgodnienie tajnego klucza, bądź zerwanie komunikacji,
 jeśli okaże się to niemożliwe.
 
@@ -444,8 +444,8 @@ Innymi słowy, na kanale klasycznym nie jest możliwy atak typu man-in-the-middl
 
 \subsection{BB84}
 
-Pierwszy \cite{Scarani09} protokół kwantowej dystrybucji klucza został opublikowany w 1984 przez
-C. Benneta i G. Brassarda \cite{bb84}. 
+Pierwszy\cite{Scarani09} protokół kwantowej dystrybucji klucza został opublikowany w 1984 przez
+C. Benneta i G. Brassarda\cite{bb84}. 
 
 Rozważmy dwie bazy przestrzeni qubitów -- \(\mathcal{B}_1 = \left\{\ \Ket{+x}, \Ket{-x}\,\right\}\), 
 będące ortonormalnymi wektorami własnymi operatora pomiaru \(\sigma_x\) oraz 
@@ -460,11 +460,11 @@ następująco:
     \begin{enumerate}
       \item Alicja wybiera losowo jedną z baz -- \(\mathcal{B}_{b_i}\)
       \item Alicja przygotowuje qubit w stanie odpowiadającym \(a_i\)-temu elementowi wybranej
-        bazy, i wysyła go Bobowi
+        bazy i wysyła go Bobowi
       \item Bob wybiera losowo jedną z baz -- \(\mathcal{B}_{\tilde{b}_i}\) i mierzy w niej
         odebrany qubit, otrzymując wartość \(\tilde{a}_i\).
     \end{enumerate}
-  \item Na kanale klasycznym Alicja i Bobowi wymieniają informację o wybranych w poprzednim
+  \item Na kanale klasycznym Alicja i Bob wymieniają informację o wybranych w poprzednim
     kroku bazach, t.j. \(b_1,\ldots,b_n\) oraz \(\tilde{b}_1,\ldots,\tilde{b}_n\), odrzucają te
     wartości, dla których ich bazy się nie zgadzają
   \item Na kanale klasycznym Alicja i Bob ujawniają pewną część swoich kluczy -- wartości 
@@ -495,12 +495,12 @@ poprawną wartość połowy przechwyconych qutibów.
 Okazuje się, że to wystarczająco dużo, by była w stanie uniemożliwić zakończenie protokołu sukcesem.
 Jeśli Ewa przechwytuje w ten sposób co najmniej \(\approx 70\%\) komunikacji na kanale kwantowym, to 
 nie da się skonstruować wspólnego tajnego klucza -- Ewa ma więcej informacji o przesyłanych wartościach, 
-niż Bob \cite{Csiszar78,Scarani09}. Wciąż jednak nie jest w stanie uzyskać ich bez wiedzy Alicji
+niż Bob\cite{Csiszar78,Scarani09}. Wciąż jednak nie jest w stanie uzyskać ich bez wiedzy Alicji
 i Boba, więc bezpieczeństwo jest zachowane.
 
 \subsection{E91}
 
-Kilka lat później, niezależnie, kolejny protokół stworzony został przez A. Ekerta \cite{Ekert91,Ekert12}.
+Kilka lat później, niezależnie, kolejny protokół stworzony został przez A. Ekerta\cite{Ekert91,Ekert12}.
 Podobnie jak BB84, wykorzystywał do komunikacji spolaryzowane fotony, mierzone w różnych bazach,
 jednak zasada jego działania, a w szczególności mechanizm wykrywania podsłuchu jest inny.
 
@@ -516,7 +516,7 @@ sposób stwierdzić, która ma który. Dzięki temu, jeśli Alicja wykona pomiar
 ,,zapadnięcie się'' systemu do stanu czystego to Bob, jeśli użyje do pomiaru kompatybilnej bazy, otrzyma
 zawsze wynik przeciwny. Tak przygotowane qubity wysyłane są do Alicji i Boba. Natura źródła atura nie 
 jest  istotna (może nim być np. jeden z uczestników komunikacji), ważne są tylko własności par, które
-emituje. Protokół przebiega następująco \cite{Ilic07}:
+emituje. Protokół przebiega następująco\cite{Ilic07}:
 
 \begin{enumerate}
   \item Źródło tworzy \(n\) par splątanych qubitów w stanie \(\frac{1}{\sqrt{2}}\left(\Ket{01}+
