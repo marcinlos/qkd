@@ -226,6 +226,67 @@ asymetrycznej, m. in. RSA -- efektywny kwantowy algorytm faktoryzacji opisany je
 pracy \cite{Shor97}.
 }
 
+\section{Quantum Key Distribution}
+
+\subsection{Początki kryptografii kwantowej}
+
+Od samego początku swojego rozwoju jako dyscypliny czysto matematycznej, kryptografia nierozłącznie
+związana była z teorią informacji i informatyką teoretyczną, w szczególności teorią obliczeń. Przy
+użyciu jej narzędzi nie tylko analizować można było istniejące rozwiązania, ale także ściśle
+dowodzić pewnych fundamentalnych ograniczeń przyjętego modelu. Brak możliwości uzyskania silniejszych
+gwarancji bezpieczeństwa (często poparty matematycznymi dowodami, jak w przypadku wymagań dla 
+szyfrowania doskonale bezpiecznego) skłaniał do tworzenia rozwiązań opartych o ,,trudne'' problemy
+obliczeniowe. 
+
+W tym okresie możliwe było już precyzyjne wyrażanie
+takich idei. Pojęcie algorytmu, intuicyjnie rozumiane już od starożytności, w miarę rozwoju 
+matematyki coraz głośniej domagało się ścisłej definicji. Dziesiąty problem Hilberta \cite{Gray01}
+dotyczy algorytmu rozwiązywania wielomianowych równań Diofantycznych. O ile oczekiwana odpowiedź 
+mogła zostać łatwo udzielona poprzez jego znalezienie i udowodnienie poprawności (nikt prawdopodobnie
+nie miałby wątpliwości, czy zaprezentowany rezultat jest faktycznie ,,algorytmem''), to pokazanie,
+że taki algorytm nie istnieje\footnote{Co też faktycznie ma miejsce -- dziesiąty problem Hilberta
+rozwiązany został w 1970 r. poprzez udowodnienie, że żądany algorytm nie może istnieć 
+\cite{Matiyasevich70}} bez ścisłej definicji algorytmu byłoby niemożliwe -- szczególnie,
+że nikt w tamtym okresie nie spodziewał się takiego rozwiązania (Hilbert nie pyta nawet o istnienie
+-- pyta o algorytm\footnotemark).
+\footnotetext{
+Hilbert głęboko wierzył, że sformalizowanie matematyki umożliwi prędzej czy później udzielenie
+definitywnej odpowiedzi na wszelkie pytania. Sporą część kariery poświęcił na rozwój logiki i 
+systemów formalnych. Jak na ironię, rezultaty burzące nadzieje na osiągnięcie w pełni tego, o czym
+marzył, pojawiać zaczęły się kilka lat przed jego śmiercią (m. in. twierdzenia G\"{o}dla o 
+niezupełności), szydząc niejako z jego słynnego epitafium -- \emph{,,Wir müssen wissen.
+Wir werden wissen''}
+}
+Formalne definicje obliczenia, takie jak maszyna Turinga, czy rachunek lambda A. Churcha powstały 
+niedługo potem. Są w swej naturze ,,skończone'' i ,,dyskretne'', mocno algebraiczne. Do dziś zdają
+się stanowić adekwatny opis naszej intuicji odnośnie algorytmu. Rozwój fizyki i mechaniki kwantowej
+pokazały jednak, że nasza intuicja o świecie, jakkolwiek przydatna i skuteczna w makroskali, nie
+stanowi bynajmniej poprawnego jej opisu. Zaprzęgnięcie często nieintuicyjnych, niemal paradoksalnych,
+potwierdzonych mimo to eksperymentalnie wniosków z teorii mechaniki kwantowej do tworzenia narzędzi
+do obliczeń i komunikacji wymaga stworzenia i pracy w zupełnie nowym modelu kryptografii, dającym
+nowe możliwości, i pozbawionym pewnych ograniczeń modelu klasycznego.
+ 
+\subsection{Przewaga nad algorytmami klasycznymi}
+
+Przy rozważaniu protokołów dystrybucji klucza zakładamy zazwyczaj, że przeciwnik -- Ewa -- ma możliwość
+podsłuchania całej komunikacji pomiędzy jego uczestnikami. Jest to założenie uzasadnione -- gdyby nie
+możliwość podsłuchania komunikacji, żadne zabezpieczenia nie byłyby wymagane. Trudno też z całą 
+pewnością postawić ograniczenie górne na ilość podsłuchanych informacji, ani wykryć (przynajmniej
+natychmiast) fakt podsłuchiwania, więc pełne bezpieczeństwo dać może jedynie protokół, który jest 
+bezpieczny nawet w tak pesymistycznym przypadku. 
+
+Podsłuchiwanie transmisji przez kanał kwantowy jednakowoż napotyka na istotną przeszkodę -- obserwacja
+wymaga pomiaru, który zmienia przesyłany stan. W połączeniu z twierdzeniem o zakazie klonowania 
+uniemożliwia to podsłuchiwaczowi działanie pozbawione wpływu na przesyłane dane. Okazuje się, że własność
+ta pozwala konstruować protokoły, w których uczestnicy natychmiast dowiadują się nie tylko o fakcie
+podsłuchiwania, ale także o tym, ile i jakie konkretnie informacje zostały przechwycone. Konkretne 
+protokoły różnią się sposobem wykrywania podsłuchu i reakcją nań, ale możliwość ta stanowi główny 
+czynnik odróżniający kwantową dystrybucję klucza od klasycznej, cechę unikalna dla niej i źródło jej 
+siły.
+
+
+
+\subsection{PAMIĘTAJ O SECURITY AMPLIFICATION}
 
 
 \nocite{*}
