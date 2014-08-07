@@ -355,7 +355,21 @@ stany światła z modulacją o rozkładzie Gaussowskim. Jednym z pierwszycht tak
 
 \subsubsection*{Distributed phase reference}
 
+W protokołach typu \emph{distributed phase reference} przekazywane informacje są dyskretne, jak
+w przypadku ze zmienną dyskretną, nieco inne jest jednak ich kodowanie. Wartości kolejnych bitów
+przesyłanej informacji nie odpowiadają bezpośrednio wartościom nadawanych sygnałów, ale są w jakiś
+sposób zawarte w ciągu. Rozważania tego typu, w przeciwieństwie do dwóch pozostałych rodzin,
+swe źródło mają w praktycznych kwestiach implementacyjnych, w szczególności trudności związane
+z zaburzeniami fazy w BB84 przy przesyłaniu spolaryzowanych fotonów na duże odległości przy
+użyciu światłowodu\cite{Liu13}.
 
+Pierwszy algorytm tego typu to \emph{Differential Phase-Shift} (DPS)\cite{Inoue02}. Wartości
+kolejnych bitów zakodowane są w różnicy fazy kolejno przesyłanych sygnałów. Zostało udowodnione,
+że jest bezwarunkowo bezpieczny\cite{Wen09}. Istnieją też działające implementacje\cite{Liu13}.
+
+Kolejnym obiecującym protokołem z tej dziedziny jest \emph{Coherent One-Way} (COW)\cite{Stucki05}.
+Działa w oparciu o pomiary czasu przybycia sygnału. Jest stosunkowo wydajny i prosty w implementacji.
+Podobnie jak DPS, został przetestowany w praktyce, z całkiem dobrym rezultatem\cite{Stucki08}.
 
 
 \section{Mechanizmy pomocnicze}
