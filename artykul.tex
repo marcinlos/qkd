@@ -304,6 +304,24 @@ ilości informacji, które zostały przechwycone. Przykładowo omówiony w dalsz
 wykrywa podsłuch poprzez testowanie nierówności Bella -- jeśli jest zachowana, stan systemu uległ 
 zmianie w wyniku działań zewnętrznych.
 
+\subsection{Korekta błędów kwantowych}
+
+Błędy w komunikacji przy użyciu kanału kwantowego pojawić się mogą nie tylko na skutek ingerencji
+osób trzecich. Nie sposób w pełni wyeliminować błędów wynikających z niedoskonałości urządzeń
+używanych w komunikacji. Podobnie jak w komunikacji tradycyjnej, konieczne jest użycie metod
+umożliwiających ich wykrywanie i korektę. Wyzwanie stanowi fakt, że konieczna jest w tym celu
+komunikacja na kanale klasycznym, podsłuchiwanym z założenia w pełni i bezkarnie przez Ewę -- 
+pożądana zatem jest minimalizacja informacji w ten sposób ujawnionych.
+
+Jednym z najpopularniejszych rozwiązań tego problemu jest tzw. protokół \emph{Cascade} \cite{Brassard94}.
+W przypadku kanałów o nawet stosunkowo dużym współczynniku błędu (ilość błędnie przekazanych wartości
+\(\leq 15\%\)), pozwala on w czasie wielomianowym usunąć niezgodności danych, ujawniając przy tym
+ilość informacji bliską minimalnej możliwej. Algorytm polega mniej więcej na wielokrotnym dzieleniu 
+danych na bloki, obliczaniu bitów parzystości i ewentualnej korekcie poprzez lokalizację błędu przy
+użyciu wyszukiwania binarnego (sprawdzając parzystości podbloków). Szczegółowy opis zostanie tu
+pominięty, znaleźć można go w cytowanym artykule, wraz z dokładną analizą \cite{Brassard94}.
+
+
 \subsection{Privacy amplification}
 
 Załóżmy, że Alicja i Bob wykonali już część główną protokołu, i dysponują zestawem danych, oraz
@@ -438,10 +456,11 @@ bazy \(\mathcal{B}\) o \(0\), \(\frac{1}{4}\pi\), \(\frac{1}{2}\pi\) dla Alicji,
 \frac{1}{\sqrt{2}}\left(\Ket{01}+\Ket{10}\right)
 \]
 w bazie \(\mathcal{B}\). Intuicyjnie, para qubitów ma przeciwny spin, natomiast przed pomiarem nie 
-sposób stwierdzić, która
-ma który. Tak przygotowane qubity wysyłane są do Alicji i Boba. Natura źródła atura nie jest 
-istotna (może nim być np. jeden z uczestników komunikacji), ważne są tylko własności par, które 
-emituje. Protokół przebiega następująco:
+sposób stwierdzić, która ma który. Dzięki temu, jeśli Alicja wykona pomiar, i wymusi w ten sposób 
+,,zapadnięcie się'' systemu do stanu czystego, Bob, jeśli użyje do pomiaru kompatybilnej bazy, otrzyma
+zawsze wynik przeciwny. Tak przygotowane qubity wysyłane są do Alicji i Boba. Natura źródła atura nie 
+jest  istotna (może nim być np. jeden z uczestników komunikacji), ważne są tylko własności par, które
+emituje. Protokół przebiega następująco \cite{Ilic07}:
 
 \begin{enumerate}
   \item Źródło tworzy \(n\) par splątanych qubitów w stanie \(\frac{1}{\sqrt{2}}\left(\Ket{01}+
@@ -454,13 +473,17 @@ emituje. Protokół przebiega następująco:
   \item Przez kanał klasyczny Alicja i Bob ujawniają swoje wybrane bazy
   \item Alicja i Bob wymieniają poprzez kanał klasyczny informacje o wynikach pomiarów dla tych
     par qubitów, dla których ich bazy się nie zgadzały
-  \item Na podstawie tych informacji określają korelację swoich wyników i porównują ją z wartościami
-    wynikającymi z nierówności Bella, aby stwierdzić, czy pary splątane przesłane przez źródło nie
-    uległy po drodze manipulacji
+  \item Na podstawie tych informacji określają korelację swoich wyników, aby stwierdzić, czy pary
+    splątane przesłane przez źródło nie uległy po drodze manipulacji
   \item Na podstawie oszacowanej ilości przechwyconych przez Ewę informacji, Alicja i Bob tworzą
-    klucz, lub protokół kończy się niepowodzeniem
+    klucz, lub protokół kończy się niepowodzeniem 
 \end{enumerate}
 
+Podobnie jak w przypadku BB84, Alicja i Bob mogą ujawnić pewne fragmenty swoich danych, by oszacować
+stopień błędu, który mógł powstać nawet bez udziału podsłuchiwacza, na skutek niedoskonałości systemu.
+Kluczowy jest krok 4, który pozwala wykryć interencję Ewy i oszacować jej rozmiar. Odbywa się to
+poprzez porównanie obliczonych korelacji pomiędzy wynikami z wartościami przewidywanymi przez mechanikę
+kwantową. Dla splątanych qubitów w stanie podanym powyżej korelacje powinny być wysokie (w szczególności, nierówności Bella powinny być pogwałcone), natomiast ingerencja Ewy spowodować musi ich zmniejszenie.
 
 \nocite{*}
 
