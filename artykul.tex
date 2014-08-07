@@ -300,9 +300,9 @@ kopii przechwyconego stanu, na której mógłby wykonać pomiar zamiast na nim (
 
 \textbf{Protokoły oparte na splątaniu} wykorzystuje w komunikacji stany splątane i fakt, że 
 podsłuchiwacz, wykonując pomiar, wpływa wówczas na stan całego systemu. Pozwala to także na określenie
-ilości informacji, które zostały przechwycone. Np. omówiony w dalszej części protokół Ekerta wykrywa
-podsłuch poprzez testowanie nierówności Bella -- jeśli jest zachowana, stan systemu uległ zmianie w 
-wyniku działań zewnętrznych.
+ilości informacji, które zostały przechwycone. Przykładowo omówiony w dalszej części protokół Ekerta 
+wykrywa podsłuch poprzez testowanie nierówności Bella -- jeśli jest zachowana, stan systemu uległ 
+zmianie w wyniku działań zewnętrznych.
 
 \subsection{Privacy amplification}
 
@@ -323,7 +323,8 @@ danych, konieczne jest zatem wzięcie pod uwagę również rozkład prawdopodobi
 Formalnie tego typu stwierdzenia wyrażać i dowodzić można w ramach teorii informacji, przy użyciu pojęć
 entropii i entropii względnej, wprowadzonych w sekcji \ref{one-time-pad}.
 
-Istnieją dwie główne rodziny metod privacy amplification.
+Istnieją dwie główne rodziny metod privacy amplification -- oparte o kodowanie liniowe, oraz o
+haszowanie uniwersalne.
 
 \subsubsection*{Kody liniowe}
 Najpopularniejsza wykrzystuje kody liniowe do kompresji częściowo przechwyconego klucza \cite{Mayers01}.
@@ -338,14 +339,22 @@ którymi dysponuje Ewa.
 
 Druga rodzina wykorzystuje do tworzenia klucza uniwersalne funkcje haszujące \cite{Bennett95,Watanabe07}.
 Wybierając losową funkcję haszującą z pewnej klasy uniwersalnej i obliczając jej wartość na kluczu
-otrzymujemy podobnie jak w przypadku kodów liniowych krótszy klucz o dużej entropii.
+otrzymujemy podobnie jak w przypadku kodów liniowych krótszy klucz o dużej entropii. Jest to w pewnym
+sensie metoda ogólniejsza niż użycie kodów liniowych, bowiem zbiór wszystkich przekształceń liniowych
+\(\mathbb{F}_2^n\rightarrow \mathbb{F}_2^m\) stanowi uniwersalną klasę funkcji haszujących 
+\cite{Carter79}.
+
+\vspace{3mm}
+
+Oczywiście, techniki privacy amplification nie zwiększają w żaden sposób entropii warunkowej danych
+Alicji i Boba względem tego, co zostało przechwycone -- pozwalają jedynie ,,skompresować'' ją w
+mniejszym kluczu. Może zdażyć się, że ilość informacji podsłuchanych przez Ewę nie pozostawia 
+wystarczającej ilości entropii do wygenerowania odpowiednio długiego klucza. Wówczas konieczne jest
+przerwanie protokołu. 
 
 
 \section{Przykładowe algorytmy QKD}
 
-
-
-\subsection{PAMIĘTAJ O SECURITY AMPLIFICATION}
 
 
 \nocite{*}
