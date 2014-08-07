@@ -268,7 +268,7 @@ niezupełności), szydząc niejako z jego słynnego epitafium -- \emph{,,Wir mü
 Wir werden wissen''}
 }
 
-\subsection{Przewaga nad algorytmami klasycznymi}
+\subsection{Przewaga QKD nad rozwiązaniami klasycznymi}
 
 Przy rozważaniu protokołów dystrybucji klucza zakładamy zazwyczaj, że przeciwnik -- Ewa -- ma możliwość
 podsłuchania całej komunikacji pomiędzy jego uczestnikami. Jest to założenie uzasadnione -- gdyby nie
@@ -286,6 +286,8 @@ protokoły różnią się sposobem wykrywania podsłuchu i reakcją nań, ale mo
 czynnik odróżniający kwantową dystrybucję klucza od klasycznej, cechę unikalna dla niej i źródło jej 
 siły.
 
+\section{Klasyfikacja protokołów QKD}
+
 \subsection{Mechanizmy wykrywania podsłuchu}
 
 Istnieje wiele opublikowanych protokołów wymiany klucza, różniących się szczegółami działania, ale
@@ -297,12 +299,21 @@ kwantowej, który wykorzystują do zapewnienia bezpieczeństwa.
 Gwarantuje to połączenie dwóch faktów: po pierwsze, podsłuchiwacz nie jest w stanie uzyskać informacji
 (t.j. dokonać pomiaru) bez zburzenia jej (efekt obserwatora), po drugie zaś nie jest w stanie wykonać
 kopii przechwyconego stanu, na której mógłby wykonać pomiar zamiast na nim (tw. o zakazie klonowania).
+Historycznie rodzina ta pojawiła się jako pierwsza, należy do niej pierwszy opublikowany protokół
+kwantowej dystrybucji klucza -- BB84 \cite{bb84,Scarani09}.
 
 \textbf{Protokoły oparte na splątaniu} wykorzystuje w komunikacji stany splątane i fakt, że 
 podsłuchiwacz, wykonując pomiar, wpływa wówczas na stan całego systemu. Pozwala to także na określenie
-ilości informacji, które zostały przechwycone. Przykładowo omówiony w dalszej części protokół Ekerta 
-wykrywa podsłuch poprzez testowanie nierówności Bella -- jeśli jest zachowana, stan systemu uległ 
-zmianie w wyniku działań zewnętrznych.
+ilości informacji, które zostały przechwycone. Przykładowo omówiony w dalszej części, historycznie
+drugi protokół A. Ekerta wykrywa podsłuch poprzez wykorzystanie do komunikacji dwuqubitowych systemów
+w stanie Bella  testowanie nierówności Bella \(\frac{1}{\sqrt{2}}\left(\Ket{01}+\Ket{10}\right)\) 
+-- jeśli korelacja wyników nie narusza nierówności Bella, stan systemu uległ zmianie w wyniku działań
+zewnętrznych \cite{Ekert91,Ekert12}.
+
+\subsection{Mechanizm odbioru informacji}
+
+
+\section{Mechanizmy pomocnicze}
 
 \subsection{Korekta błędów kwantowych}
 
@@ -444,7 +455,7 @@ i Boba, więc bezpieczeństwo jest zachowane.
 
 \subsection{E91}
 
-Kilka lat później, niezależnie, kolejny protokół stworzony został przez A. Ekerta \cite{Ekert91}.
+Kilka lat później, niezależnie, kolejny protokół stworzony został przez A. Ekerta \cite{Ekert91,Ekert12}.
 Podobnie jak BB84, wykorzystywał do komunikacji spolaryzowane fotony, mierzone w różnych bazach,
 jednak zasada jego działania, a w szczególności mechanizm wykrywania podsłuchu jest inny.
 
