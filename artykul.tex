@@ -593,6 +593,52 @@ bezpiecznych sposobów. Tego rodzaju ataki wykraczają poza zbiór dopuszczalnyc
 interesujących z punktu widzenia działania samego protokołu, i generalnie nie są rozważane przy
 analizie ich bezpieczeństwa.
 
+\subsection{Bezpieczeństwo głównych protokołów}
+
+W przypadku większości z wymienionych dotychczas protokołów udowodnione zostało bezwarunkowe ich
+bezpieczeństwo, przynajmniej w prostych, teoretycznych przypadkach. Bardziej szczegółowe podsumowanie
+dla różnych konkretnych algorytmów znaleźć można w \cite{Scarani09}. Istotnym faktem jest jednak to,
+że dowody dla prostych przypadków teoretycznych niekoniecznie przekładają się na prawdziwe
+bezpieczeństwo faktycznej implementacji. Dla protokołu BB84 udowodnione zostało bezwarunkowe
+bezpieczeństwo\cite{Inamori07}, jednak dowód dotyczy wersji, gdzie informacje przekazywane są przy 
+użyciu pojedynczych fotonów. Ze względu na ograniczenia technologiczne, w praktyce używane są większe 
+ich grupy, co daje nowe możliwości podsłuchiwaczowi.
+
+
+\subsection{Przykładowe typy ataków}
+
+\subsubsection*{Intercept-and-resend}
+
+Jest to najprostszy typ ataku, w którym napastnik przechwytuje i mierzy część (lub całość) komunikacji
+poprzez kanał kwantowy. Jest to dokładnie rodzaj ataku, na który odprone są algorytmy kwantowej
+dystrybucji klucza, ze względu na możliwość wykrycia podsłuchiwania.
+
+\subsubsection*{PNS}
+
+Ataki typu PNS (\emph{photon number splitting}) wykorzystują fakt, że przesyłanie informacji za
+pomocą pojedynczych fotonów jest trudne, i w większości implementacji wykorzystywane są niewielkie
+ich grupy. To umożliwia Ewie przechwycenie części takiej grupy, podczas gdy reszta dociera 
+niezmieniona do odbiorcy. Ewa może zachować taki stan do momentu, w którym Alicja i Bob ujawniają
+bazy, których użyli, i wtedy dokonać pomiaru. Jest wówczas w posiadaniu pełnej informacji o danych
+znanych Alicji i Bobowi, a co za tym idzie, nie ma możliwości wygenerowania wspólnego tajnego
+klucza. Co więcej, taki atak, w przeciwieństwie do prostego intercept-and-resend, nie pozostawia
+śladów. Możliwe jest nawet przy pewnych założeniach przeprowadzenie go w taki sposób, by nie zmieniał
+ogólnego kształtu rozkładu ilości transmitowanych fotonów\cite{Lutkenhaus02}.
+
+Okazuje się, że możliwość przeprowadzenia przez Ewę takiego ataku jest uzależniona od ilości błędów
+wprowadzanych przez kanał, i jeśli nie jest ona zbyt duża, pomimo przechwycenia przez Ewę w ten 
+sposób części informacji wciąż możliwe jest stworzenie tajnego klucza\cite{Inamori07}, wymaga to
+jednak znacznie większej ilości danych przesyłanych kanałem kwantowym.
+
+
+\subsubsection*{Atak oparty o klonowanie}
+
+Zakaz klonowania kwantowego uniemożliwia choćby przybliżone skopiowanie ogólnego stanu systemu
+kwantowego. Okazuje się jednak, że dysponując dwiema kopiami stanu, możliwe jest (przynajmniej w 
+niektórych interesujących przypadkach) wykonanie kopii na tyle wiernej, by posłużyć mogła do
+przeprowadzenia ataku\cite{Acin04}. Co więcej, w pewnych okolicznościach atak taki może być nawet
+bardziej skuteczny niż PNS\cite{Niederberger05}.
+
 
 \section{Istniejące implementacje}
 
