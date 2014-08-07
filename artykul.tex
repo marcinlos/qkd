@@ -69,6 +69,7 @@ rzędy wielkości.
 
 
 \section{Szyfrowanie one-time pad}
+\label{one-time-pad}
 
 Jednym z najbardziej atrakcyjnych potencjalnych przypadków użycia dla ewentualnego w pełni bezpiecznego
 protokołu dystrybucji klucza jest z pewnością tzw. szyfr z kluczem jednorazowym (one-time pad). Jego
@@ -248,7 +249,16 @@ nie miałby wątpliwości, czy zaprezentowany rezultat jest faktycznie ,,algoryt
 rozwiązany został w 1970 r. poprzez udowodnienie, że żądany algorytm nie może istnieć 
 \cite{Matiyasevich70}} bez ścisłej definicji algorytmu byłoby niemożliwe -- szczególnie,
 że nikt w tamtym okresie nie spodziewał się takiego rozwiązania (Hilbert nie pyta nawet o istnienie
--- pyta o algorytm\footnotemark).
+-- pyta o algorytm\footnotemark). Formalne definicje obliczenia, takie jak maszyna Turinga, czy rachunek
+lambda A. Churcha powstały niedługo potem. Są w swej naturze ,,skończone'' i ,,dyskretne'', mocno
+algebraiczne. Do dziś zdają się stanowić adekwatny opis naszej intuicji odnośnie algorytmu. Rozwój 
+fizyki i mechaniki kwantowej pokazały jednak, że nasza intuicja o świecie, jakkolwiek przydatna 
+i skuteczna w makroskali, nie stanowi bynajmniej poprawnego jej opisu. Zaprzęgnięcie często 
+nieintuicyjnych, niemal paradoksalnych, potwierdzonych mimo to eksperymentalnie wniosków z teorii 
+mechaniki kwantowej do tworzenia narzędzi do obliczeń i komunikacji wymaga stworzenia i pracy w 
+zupełnie nowym modelu kryptografii, dającym nowe możliwości, i pozbawionym pewnych ograniczeń modelu
+klasycznego.
+ 
 \footnotetext{
 Hilbert głęboko wierzył, że sformalizowanie matematyki umożliwi prędzej czy później udzielenie
 definitywnej odpowiedzi na wszelkie pytania. Sporą część kariery poświęcił na rozwój logiki i 
@@ -257,15 +267,7 @@ marzył, pojawiać zaczęły się kilka lat przed jego śmiercią (m. in. twierd
 niezupełności), szydząc niejako z jego słynnego epitafium -- \emph{,,Wir müssen wissen.
 Wir werden wissen''}
 }
-Formalne definicje obliczenia, takie jak maszyna Turinga, czy rachunek lambda A. Churcha powstały 
-niedługo potem. Są w swej naturze ,,skończone'' i ,,dyskretne'', mocno algebraiczne. Do dziś zdają
-się stanowić adekwatny opis naszej intuicji odnośnie algorytmu. Rozwój fizyki i mechaniki kwantowej
-pokazały jednak, że nasza intuicja o świecie, jakkolwiek przydatna i skuteczna w makroskali, nie
-stanowi bynajmniej poprawnego jej opisu. Zaprzęgnięcie często nieintuicyjnych, niemal paradoksalnych,
-potwierdzonych mimo to eksperymentalnie wniosków z teorii mechaniki kwantowej do tworzenia narzędzi
-do obliczeń i komunikacji wymaga stworzenia i pracy w zupełnie nowym modelu kryptografii, dającym
-nowe możliwości, i pozbawionym pewnych ograniczeń modelu klasycznego.
- 
+
 \subsection{Przewaga nad algorytmami klasycznymi}
 
 Przy rozważaniu protokołów dystrybucji klucza zakładamy zazwyczaj, że przeciwnik -- Ewa -- ma możliwość
@@ -283,6 +285,63 @@ podsłuchiwania, ale także o tym, ile i jakie konkretnie informacje zostały pr
 protokoły różnią się sposobem wykrywania podsłuchu i reakcją nań, ale możliwość ta stanowi główny 
 czynnik odróżniający kwantową dystrybucję klucza od klasycznej, cechę unikalna dla niej i źródło jej 
 siły.
+
+\subsection{Mechanizmy wykrywania podsłuchu}
+
+Istnieje wiele opublikowanych protokołów wymiany klucza, różniących się szczegółami działania, ale
+większość zaklasyfikować można do jednej z dwóch grup, w zależności od mechanizmu mechaniki
+kwantowej, który wykorzystują do zapewnienia bezpieczeństwa.
+
+\textbf{Prepare-and-measure} wykorzystuje fakt, że ewentualny podsłuchiwacz nie jest w stanie zapewnić,
+że do prawowitego odbiorcy komunikacji trafią qubity takie same, jak te, które zostały wysłane.
+Gwarantuje to połączenie dwóch faktów: po pierwsze, podsłuchiwacz nie jest w stanie uzyskać informacji
+(t.j. dokonać pomiaru) bez zburzenia jej (efekt obserwatora), po drugie zaś nie jest w stanie wykonać
+kopii przechwyconego stanu, na której mógłby wykonać pomiar zamiast na nim (tw. o zakazie klonowania).
+
+\textbf{Protokoły oparte na splątaniu} wykorzystuje w komunikacji stany splątane i fakt, że 
+podsłuchiwacz, wykonując pomiar, wpływa wówczas na stan całego systemu. Pozwala to także na określenie
+ilości informacji, które zostały przechwycone. Np. omówiony w dalszej części protokół Ekerta wykrywa
+podsłuch poprzez testowanie nierówności Bella -- jeśli jest zachowana, stan systemu uległ zmianie w 
+wyniku działań zewnętrznych.
+
+\subsection{Privacy amplification}
+
+Załóżmy, że Alicja i Bob wykonali już część główną protokołu, i dysponują zestawem danych, oraz
+informacją, jaka ich część została przechwycona przez podsłuchiwacza -- Ewę. Nie są jednak w stanie
+stwierdzić, która część danych została przechwycona. Aby więc protokoły tego rodzaju miały jakieś
+praktyczne zastosowanie, konieczny jest sposób przekształcenai tych częściowo przechwyconych informacji
+w klucz mniejszy, ale taki, o którym Ewa nie posiada żadnych informacji. Metody pozwalające to osiągnąć
+znane są jako \emph{privacy amplification} \cite{Watanabe07}.
+
+Dla ilustracji rozważmy prosty przykład: Alicja i Bob posiadają klucz dwubitowy \(r = b_1 b_2\), oraz
+wiedzą, że Ewa przechwyciła jeden z bitów. Alicja i Bob decydują jako klucza właściwego użyć alternatywy
+wykluczającej posiadanych bitów, \(r' = b_1 \oplus b_2\). Łatwo zauważyć, że znajomość jednego bitu
+nie daje Ewie żadnych informacji, bo przy ustalonym jednym bicie wartość \(r'\) zależy w całości od 
+drugiego, nieznanego. Alicja i Bob mogą więc być pewni, że klucz \(r'\) może być użyty do bezpiecznej
+komunikacji. W faktycznych protokołach Alicja i Bob nie mają nigdy pewności, co do ilości przechwyconych 
+danych, konieczne jest zatem wzięcie pod uwagę również rozkład prawdopodobieństwa tej informacji. 
+Formalnie tego typu stwierdzenia wyrażać i dowodzić można w ramach teorii informacji, przy użyciu pojęć
+entropii i entropii względnej, wprowadzonych w sekcji \ref{one-time-pad}.
+
+Istnieją dwie główne rodziny metod privacy amplification.
+
+\subsubsection*{Kody liniowe}
+Najpopularniejsza wykrzystuje kody liniowe do kompresji częściowo przechwyconego klucza \cite{Mayers01}.
+Klucze reprezentowane są jako ciągi bitów, t.j. wektory w \(\mathbb{F}_2^n\). Do klucza początkowego,
+częściowo przechwyconego \(u\in\mathbb{F}_2^n\) aplikowane jest odpowiednio dobrane przekształcenie 
+liniowe \(\tau\colon\mathbb{F}_2^n\rightarrow \mathbb{F}_2^m\) (czyli macierz binarna \(n\times m\)), 
+wybrane m. in. na podstawie ilości podsłuchanych danych. Stosując odpowiednie macierze, można udowodnić
+wystarczająco silne ograniczenia dolne na entropię warunkową \(\tau(u)\) względem informacji,
+którymi dysponuje Ewa.
+
+\subsubsection*{Uniwersalne funkcje haszujące}
+
+Druga rodzina wykorzystuje do tworzenia klucza uniwersalne funkcje haszujące \cite{Bennett95,Watanabe07}.
+Wybierając losową funkcję haszującą z pewnej klasy uniwersalnej i obliczając jej wartość na kluczu
+otrzymujemy podobnie jak w przypadku kodów liniowych krótszy klucz o dużej entropii.
+
+
+\section{Przykładowe algorytmy QKD}
 
 
 
