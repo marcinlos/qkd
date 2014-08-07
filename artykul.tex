@@ -376,8 +376,9 @@ C. Benneta i G. Brassarda \cite{bb84}.
 Rozważmy dwie bazy przestrzeni qubitów -- \(\mathcal{B}_1 = \left\{\ \Ket{+x}, \Ket{-x}\,\right\}\), 
 będące ortonormalnymi wektorami własnymi operatora pomiaru \(\sigma_x\), oraz 
 \(\mathcal{B}_2 = \left\{\ \Ket{+z}, \Ket{-z}\,\right\}\), będące ortonormalnymi wektorami własnymi
-operatora pomiaru \(\sigma_z\), gdzie \(\sigma_z\), \(\sigma_z\) to operatory Pauliego. Protokół
-przebiega następująco:
+operatora pomiaru \(\sigma_z\), gdzie \(\sigma_z\), \(\sigma_z\) to operatory Pauliego. W praktyce
+odpowiadają one stanom polaryzacji fotonów, wykorzystywanych w implementacji. Protokół przebiega 
+następująco:
 
 \begin{enumerate}
   \item Alicja wybiera losowo \(n\) bitów \(a=a_1\ldots a_n\)
@@ -422,6 +423,44 @@ Jeśli Ewa przechwytuje w ten sposób co najmniej \(\approx 70\%\) komunikacji n
 nie da się skonstruować wspólnego tajnego klucza -- Ewa ma więcej informacji o przesyłanych wartościach, 
 niż Bob \cite{Csiszar78,Scarani09}. Wciąż jednak nie jest w stanie uzyskać ich bez wiedzy Alicji
 i Boba, więc bezpieczeństwo jest zachowane.
+
+\subsection{E91}
+
+Kilka lat później, niezależnie, kolejny protokół stworzony został przez A. Ekerta \cite{Ekert91}.
+Podobnie jak BB84, wykorzystywał do komunikacji spolaryzowane fotony, mierzone w różnych bazach,
+jednak zasada jego działania, a w szczególności mechanizm wykrywania podsłuchu jest inny.
+
+W protokole używane są po trzy różne bazy dla Alicji i Boba, odpowiadające rotacji pewnej wybranej
+bazy \(\mathcal{B}\) o \(0\), \(\frac{1}{4}\pi\), \(\frac{1}{2}\pi\) dla Alicji, i \(\frac{1}{4}\pi\), 
+\(\frac{1}{2}\pi\) i \(\frac{3}{4}\pi\) dla Boba. Kluczowym elementem implementacji protokołu jest 
+źródło splątanych par qubitów w jednym ze stanów Bella:
+\[
+\frac{1}{\sqrt{2}}\left(\Ket{01}+\Ket{10}\right)
+\]
+w bazie \(\mathcal{B}\). Intuicyjnie, para qubitów ma przeciwny spin, natomiast przed pomiarem nie 
+sposób stwierdzić, która
+ma który. Tak przygotowane qubity wysyłane są do Alicji i Boba. Natura źródła atura nie jest 
+istotna (może nim być np. jeden z uczestników komunikacji), ważne są tylko własności par, które 
+emituje. Protokół przebiega następująco:
+
+\begin{enumerate}
+  \item Źródło tworzy \(n\) par splątanych qubitów w stanie \(\frac{1}{\sqrt{2}}\left(\Ket{01}+
+    \Ket{10}\right)\), wysyła je do Alicji i Boba
+  \item Dla każdego \(i\in\left\{1,\ldots,n\right\}\):
+    \begin{enumerate}
+      \item Alicja wybiera jedną ze swoich baz, i mierzy w niej \(i\)-ty qubit
+      \item Bob wybiera jedną ze swoich baz, i mierzy w niej \(i\)-ty qubit
+    \end{enumerate}
+  \item Przez kanał klasyczny Alicja i Bob ujawniają swoje wybrane bazy
+  \item Alicja i Bob wymieniają poprzez kanał klasyczny informacje o wynikach pomiarów dla tych
+    par qubitów, dla których ich bazy się nie zgadzały
+  \item Na podstawie tych informacji określają korelację swoich wyników i porównują ją z wartościami
+    wynikającymi z nierówności Bella, aby stwierdzić, czy pary splątane przesłane przez źródło nie
+    uległy po drodze manipulacji
+  \item Na podstawie oszacowanej ilości przechwyconych przez Ewę informacji, Alicja i Bob tworzą
+    klucz, lub protokół kończy się niepowodzeniem
+\end{enumerate}
+
 
 \nocite{*}
 
