@@ -651,7 +651,39 @@ bardziej skuteczny niż PNS\cite{Niederberger05}.
 
 \section{Istniejące implementacje}
 
-\subsection{Implementacje eksperymentalne}
+QKD stanowi obecnie najbardziej dojrzałą i rozwiniętą gałąź kryptografii kwantowej. Poza dużą
+ilością implementacji eksperymentalnych, powstało też kilka rozwiązań komercyjnych.
+
+\subsection{Wybrane implementacje eksperymentalne}
+
+W 2004 r. udało się uzyskać komunikację na odległość 150 km przy użyciu pojedynczego interferującego
+z samym sobą fotonu\cite{Kimura04}.
+
+W 2005 r. zaproponowany został protokół oparty na ideach \emph{Differential Phase Shift}, mający
+zagwarantować bezpieczeństwo przeciw atakom typu PNS\cite{Takesue05}. W przeprowadzonych eksperymentach
+na dystansie 30 km osiągnięta została szybkość generowania danych przekraczająca 1 Mbit/s, zaś szybkość
+generowania klucza nieco poniżej 0.5 Mbit/s, co stanowiło masywne przyspieszenie w stosunku do 
+wcześniejszych rezultatów. Po raz pierwszy wygenerowane zostały przy użyciu komunikacji światłowodowej
+klucze na dystancie przekraczającym 100 km.
+
+W 2007 r. przeprowadzono transmisję w przestrzeni na odległość 144 km przy użyciu lasera. Użyty
+został protokół BB84 z \emph{decoy states}. Uzyskano szybkość generacji klucza wynoszącą 12.8 bit/s.
+Zdaniem zespołu przeprowadzającego eksperyment, stanowił on dowód, że globalna implementacja QKD
+poprzez satelity jest możliwa.
+
+W 2013 r. stworzona została przy użyciu FPGA implementacja QKD działająca w czasie rzeczywistym
+\cite{Zhang13}. Na dystansie 20 km, przy częstotliwości przesyłu 20 Mhz osiągnięta została szybkość
+generacji klucza 17 kbps.
+
+W 2014 r. przeprowadzono pierwsze eksperymenty przy użyciu światłowodu na dystansie 336 km (tłumienie
+72 dB), z wykorzystaniem nowego rodzaju detektorów fotonów\cite{Shibata14}. Osiągnięty został poziom 
+błędów w okolicach 4.1\%, co nie pozwala już na wygenerowanie bezpiecznego klucza, ale rozważania
+teoretyczne sugerowały wartość 3\% (różnica wynika najprawdopodobniej z niedoskonałości sprzętu), 
+przy której wciąż byłoby to możliwe. Maksymalny dystans, na którym udało się wygenerować klucz to 
+306 km. Przy błędzie 2.64\% klucz jest generowany z szybkością 0.17 bit/s. Jakkolwiek wartości te 
+wykluczają praktyczne użycie, autorzy eksperymetu sugerują, że pewne modyfikacje i rozwój technologii 
+w najbliższej przyszłości pozwolić mogą na uzyskanie szybkości rzędu kilobitów na sekundę na dystansie 
+400 km.
 
 \subsection{Implementacje komercyjne}
 
