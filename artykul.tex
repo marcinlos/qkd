@@ -687,8 +687,78 @@ w najbliższej przyszłości pozwolić mogą na uzyskanie szybkości rzędu kilo
 
 \subsection{Implementacje komercyjne}
 
+Firma id Quantique\cite{idquantique} wytwarza i sprzedaje rozwiązania kryptograficzne wykorzystujące
+mechanikę kwantową możliwe do użycia z wieloma protokołami. W jej ofercie znaleźć można wysokiej
+wydajności moduły szyfrujące (100 Gbps), wykorzystujące QKD, serwer QKD obsługujący protokoły BB83
+i SARG04, działający na dystans do 100 km, liczniki fotonów oraz kwantowe generatory liczb losowych.
+Według informacji na oficjalnej stronie internetowej, wśród użytkowników jej produktów znaleźć można
+m. in. rząd Genewy.
+
+MagiQ\cite{magiq} to amerykańska organizacja R\&D. W swej ofercie posiada zarówno gotowe rozwiązania, 
+takie jak sieć VPN zabezpieczoną przy użyciu kluczy rozprowadzanych z dużą częstotliwością przez QKD, 
+jak i mniejsze składniki -- m. in. samą implementację QKD. Oferuje również sprzęt optyczny 
+(interferometry, sensowy, syntezatory). Z jej produktów korzysta m. in. Armia Stanów Zjednoczonych 
+i NASA.
+
+Quintessence Labs\cite{quintessencelabs} oferuje rozwiązania oparte na ,,kwantowych własnościach 
+lasera'', które reklamuje jako szybsze, tańsze i bardziej kompatybilne z istniejącymi technologiami, 
+aniżeli tradycyjne protokoły typu zmiennej dyskretnej. Bardziej szczegółowy opis zastosowanych 
+rozwiązań jest prawdopodobnie dostępny na oficjalnej stronie internetowej, jednak dostęp do tych
+dokumentów wymaga podania informacji personalnych. Wśród ich produktów znajdują się m. in. generator
+liczb losowych, system QKD, implementacja szyfu one-time pad oraz switch wykorzystujący te 
+technologie do zapewnienia bezpiecznej komunikacji w warstwie drugiej modelu OSI.
+
+SeQureNet\cite{sequrenet} specjalizuje się w protokołach QKD zmiennej ciągłej. Oferują implementację
+protokołu Gaussowskiego, działającą na dystansie do 80 km, wykorzystującą kodowanie LDPC (low-density
+parity check) do zapewnienia integralności przesyłanych danych, haszowanie uniwersalne do privacy
+amplification, oraz opcjonalnie AES lub one-time pad do szyfrowania danych. Ponadto, możliwe jest
+nabycie oprogramowania do post-processingu (korekcja błędów, privacy amplification).
+
+
+\subsection{Sieci QKD}
+
+Technologia QKD doczekała się także kilku testów na większą skalę.
+
+DARPA Quantum Network\cite{darpa} to pierwsza sieć komputerowa wykorzystująca technologie kwantowe, 
+Stworzona została w 2003 roku wspólnym wysiłkiem BBN Technologies, Uniwersystetu Harvarda i 
+Uniwersystetu Bostońskiego. Składa się z 10 węzłów, działa nieprzerwanie od 2004 r. Wykorzystuje 
+komunikację światłowodową, splątanie przez światłowód oraz komunikację w przestrzeni (bez przewodów),
+protokół SARG4, haszowanie uniwersalne i m. in. protokół Cascade do korekcji błędów. Szczegółowy opis
+znaleźć można w\cite{darpa05}.
+
+SECOQC\footnotemark\cite{secoqc} to europejski projekt mający na celu dalszy rozwój kryptografii 
+kwantowej jako praktycznej technologii. W jego ramach w 2008 r. w Wiedniu, podczas międzynarodowej
+konferencji stworzony został prototyp sieci, łączący pięć punktów (4 w Wiedniu, jeden w oddalonym
+o 85 km St. Poelten) z potencjalną szybkością transmicji do 10 Gbps. Szczegółowy opis architektury,
+protokołów i wykorzystanego sprzętu znaleźć można w\cite{Poppe08}.
+
+\footnotetext{
+\textbf{S}ecure \textbf{C}ommunication \textbf{B}ased on \textbf{Q}uantum \textbf{C}ryptography
+}
+
+Tokyo QKD Network\cite{tokyo} to eksperymentalna sieć obejmująca swoim zasięgiem miejskie rejony
+Tokyo, upubliczniona w 2010 r. podczas inauguracji konferencji UQCC2010\cite{uqqc2010}. Powstała 
+w wyniku międzynarodowej współpracy wiodących firm z całego świata: NEC, Mitsubishi Electric, NTT, 
+NICT, Toshiba Research Europe Ltd. (UK), Id Quantique (Switzerland) i All Vienna (Austria). 
+
+SwissQuantum\cite{swissquantum} to sieć stworzona przez firmę id Quantuque w Genewie. Stanowiła 
+najdłuższy (dwuletni -- 2009-2011) test działania sieci kwantowej w warunkach praktycznych na dużą
+skalę. Po dwóch latach została zdeaktywowana, a projekt ogłoszony sukcesem, potwierdzającym
+możliwość wykorzystania istniejących technologii QKD jako komercyjnego mechanizmu zapewniania
+bezpieczeństwa sieci komunikacyjnych. Pewne wątpliwości budzić mogą jednak publikacje opisujące 
+możliwe ataki wykorzystujące niedoskonałości implementacji\cite{Gerhardt11}. Szczegóły dotyczące
+budowy sieci oraz dokładny raport z okresu jej funkcjonowania znaleźć można w\cite{Stucki11}.
 
 \section{Podsumowanie}
+
+Kryptografia wykorzystująca mechanikę kwantową bez wątpienia stanowi tak ciekawą, jak i obiecującą
+gałąź nauki. Nowy opis rzeczywistości, znacząco różniący się od klasycznego, pozwala przekraczać
+bariery, na które natrafiła szybko kryptografia tradycyjna. Rozwój technologiczny z drugiej strony
+pozwala mieć nadzieję, że opisywane tu rozwiązania z łamów czasopism naukowych i laboratoriów 
+badawczych przeniosą się niebawem do codziennego życia. QKD, jako najbardziej dojrzała i zaawansowana
+gałąź kryptografii kwantowej, zdaje się mieć na to największe szanse, szczególnie biorąc pod uwagę
+fakt, że komercyjne rozwiązania są rozwijane i już możliwe do nabycia.
+
 
 \nocite{*}
 
